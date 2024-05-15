@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SiteSwift</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <!-- <nav class="navbar p-5">
+
+      <div class="container">
+        <a href="#" class="logo">SiteSwift</a>
+        <ul class="nav-menu">
+          <li><a href="#home">Home</a></li>
+          <li class="dropdown">
+            <a href="#features">Features</a>
+            <ul class="dropdown-menu">
+              <li><a href="#shared">Shared Hosting</a></li>
+              <li><a href="#vps">VPS Hosting</a></li>
+              <li><a href="#dedicated">Dedicated Hosting</a></li>
+            </ul>
+          </li>
+          <li><a href="#plans">Plans</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+          <li class="dropdown">
+            <a href="#features">Account</a>
+            <ul class="dropdown-menu">
+              <li><a href="#shared">SignIn</a></li>
+              <li><a href="#vps">SignUp</a></li>
+              <li><a href="#dedicated">Profile</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </nav> -->
+
+    <header class="header">
+      <!-- Topbar -->
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 col-md-5 col-12"></div>
+          <div class="col-lg-6 col-md-7 col-12">
+            <!-- Top Contact -->
+            <!-- End Top Contact -->
+          </div>
+        </div>
+      </div>
+      <!-- End Topbar -->
+      <!-- Header Inner -->
+      <div class="header-inner">
+        <div class="container">
+          <div class="inner">
+            <div class="row">
+              <div class="col-lg-3 col-md-3 col-12">
+                <!-- Start Logo -->
+                <div class="logo">
+                  <h2>SiteSwift</h2>
+                </div>
+                <!-- End Logo -->
+                <!-- Mobile Nav -->
+                <div class="mobile-nav">
+                  <div class="hamburger-menu" id="hamburger-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                </div>
+                <!-- End Mobile Nav -->
+              </div>
+              <div class="col-lg-7 col-md-9 col-12">
+                <!-- Main Menu -->
+                <div class="main-menu">
+                  <nav class="navigation">
+                    <ul class="nav menu">
+                      <li>
+                        <a href="./index.html">Home </a>
+                        <!-- <ul class="dropdown">
+                          <li><a href="index.html">Home Page 1</a></li>
+                        </ul> -->
+                      </li>
+                      <li class="active">
+                        <a href="./about.html">About Us </a>
+                      </li>
+                      <li><a href="./services.html">Services </a></li>
+                      <li>
+                        <a href="#"
+                          >Pages <i class="icofont-rounded-down"></i
+                        ></a>
+                        <ul class="dropdown">
+                          <li><a href="404.html">404 Error</a></li>
+                          <li><a href="404.html">404 Error</a></li>
+                          <li><a href="404.html">404 Error</a></li>
+                        </ul>
+                      </li>
+                      <li>
+                        <a href="#"
+                          >Blogs <i class="icofont-rounded-down"></i
+                        ></a>
+                        <ul class="dropdown">
+                          <li><a href="blog-single.html">Blog Details</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                  </nav>
+                </div>
+                <!--/ End Main Menu -->
+              </div>
+              <div class="col-lg-2 col-12">
+                <div class="get-quote">
+                  <a href="appointment.html" class="btn">Book Appointment</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--/ End Header Inner -->
+    </header>
+
+    <!-- Slider Area -->
+
+    <!--/ End Slider Area -->
+
+    <!-- Search your domain -->
+    <section class="ftco-domain">
+      <div class="container">
+        <div class="row d-flex">
+          <div class="col-lg-5 heading-white mb-4 mb-sm-4 mb-lg-0 ftco-animate">
+            <h2>Search You Domain Name</h2>
+            <p>A small river named Duden flows by their place</p>
+          </div>
+          <div class="col-lg-7 ftco-wrap ftco-animate">
+            <form action="#" class="domain-form d-flex">
+              <div class="form-group domain-name">
+                <input
+                  type="text"
+                  class="form-control name px-4"
+                  placeholder="Enter your domain name..."
+                />
+              </div>
+              <div class="form-group domain-select d-flex">
+                <div class="select-wrap">
+                  <div class="icon">
+                    <span class="ion-ios-arrow-down"></span>
+                  </div>
+                  <select name="" id="" class="form-control">
+                    <option value="">.com</option>
+                    <option value="">.net</option>
+                    <option value="">.biz</option>
+                    <option value="">.co</option>
+                    <option value="">.me</option>
+                  </select>
+                </div>
+                <input
+                  type="submit"
+                  class="search-domain btn btn-primary text-center"
+                  value="Search"
+                />
+              </div>
+            </form>
+            <p class="domain-price mt-2">
+              <span><small>.com</small> $9.75</span>
+              <span><small>.net</small> $9.50</span>
+              <span><small>.biz</small> $8.95</span>
+              <span><small>.co</small> $7.80</span
+              ><span><small>.me</small> $7.95</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Core features -->
+
+    <!-- core_features_start -->
+    <div class="container-xxl py-5">
+      <div class="container px-lg-5">
+        <div
+          class="section-title position-relative text-center mx-auto mb-5 pb-4 wow fadeInUp"
+          data-wow-delay="0.1s"
+          style="max-width: 600px"
+        >
+          <h1 class="mb-3">Our core features</h1>
+          <p class="mb-1">
+            Siteswift prides itself to guarantee the following to its customers
+          </p>
+        </div>
+        <div class="row comparison position-relative">
+          <div class="comparison container-fluid">
+            <!-- <div class="section-title position-relative mx-auto mb-4 pb-4">
+              <h3 class="fw-bold mb-0">Shared Server</h3>
+            </div> -->
+            <div class="row gx-5">
+              <div class="col-lg-3 col-md-6 wow fadeIn" data-wow-delay="0.1s">
+                <i class="fa fa-server fa-3x text-primary mb-3"></i>
+                <h5 class="fw-bold">99.99% Uptime</h5>
+                <p>
+                  Ipsum dolor diam stet stet kasd diam sea stet sed rebum dolor
+                  ipsum
+                </p>
+              </div>
+              <div class="col-lg-3 col-md-6 wow fadeIn" data-wow-delay="0.3s">
+                <i class="fa fa-shield-alt fa-3x text-primary mb-3"></i>
+                <h5 class="fw-bold">100% Secured</h5>
+                <p>
+                  Ipsum dolor diam stet stet kasd diam sea stet sed rebum dolor
+                  ipsum
+                </p>
+              </div>
+              <div class="col-lg-3 col-md-6 wow fadeIn" data-wow-delay="0.5s">
+                <i class="fa fa-cog fa-3x text-primary mb-3"></i>
+                <h5 class="fw-bold">Control Panel</h5>
+                <p>
+                  Ipsum dolor diam stet stet kasd diam sea stet sed rebum dolor
+                  ipsum
+                </p>
+              </div>
+              <div class="col-lg-3 col-md-6 wow fadeIn" data-wow-delay="0.7s">
+                <i class="fa fa-headset fa-3x text-primary mb-3"></i>
+                <h5 class="fw-bold">24/7 Support</h5>
+                <p>
+                  Ipsum dolor diam stet stet kasd diam sea stet sed rebum dolor
+                  ipsum
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- core_features_end -->
+
+    <!-- Pricing Start -->
+    <div class="container-xxl py-5">
+      <div class="container px-lg-5">
+        <div
+          class="section-title position-relative text-center mx-auto mb-5 pb-4 wow fadeInUp"
+          data-wow-delay="0.1s"
+          style="max-width: 600px"
+        >
+          <h1 class="mb-3">Our Hosting Plans</h1>
+          <p class="mb-1">
+            Vero justo sed sed vero clita amet. Et justo vero sea diam elitr
+            amet ipsum eos ipsum clita duo sed. Sed vero sea diam erat vero
+            elitr sit clita.
+          </p>
+        </div>
+        <div class="row gy-5 gx-3">
+          <div class="col-lg-3 col-md-3 wow fadeInUp" data-wow-delay="0.2s">
+            <div
+              class="position-relative shadow rounded border-top border-5 border-primary"
+            >
+              <div
+                class="d-flex align-items-center justify-content-center position-absolute top-0 start-50 translate-middle bg-primary rounded-circle"
+                style="width: 45px; height: 45px; margin-top: -3px"
+              >
+                <i class="fa fa-share-alt text-white"></i>
+              </div>
+              <div class="text-center border-bottom p-4 pt-5">
+                <h4 class="fw-bold">Share Hosting</h4>
+                <p class="mb-0">
+                  Eirmod erat dolor amet est clita lorem erat justo rebum elitr
+                  eos
+                </p>
+              </div>
+              <div class="text-center border-bottom p-4">
+                <p class="text-primary mb-1">
+                  Latest Offer - <strong>Save 30%</strong>
+                </p>
+                <h1 class="mb-3">
+                  <small
+                    class="align-top"
+                    style="font-size: 22px; line-height: 45px"
+                    >$</small
+                  >2.49<small
+                    class="align-bottom"
+                    style="font-size: 16px; line-height: 40px"
+                    >/ Month</small
+                  >
+                </h1>
+                <a class="btn btn-primary px-4 py-2" href="">Buy Now</a>
+              </div>
+              <div class="p-4">
+                <p class="border-bottom pb-3">
+                  <i class="fa fa-check text-primary me-3"></i>100 GB Disk Space
+                </p>
+                <p class="border-bottom pb-3">
+                  <i class="fa fa-check text-primary me-3"></i>Unlimited
+                  Bandwith
+                </p>
+                <p class="border-bottom pb-3">
+                  <i class="fa fa-check text-primary me-3"></i>Upgrade to
+                  Positive SSL
+                </p>
+                <p class="border-bottom pb-3">
+                  <i class="fa fa-check text-primary me-3"></i>Automatic Malware
+                  Removal
+                </p>
+                <p class="mb-0">
+                  <i class="fa fa-check text-primary me-3"></i>30 Days Money
+                  Back Guarantee
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-3 wow fadeInUp" data-wow-delay="0.4s">
+            <div
+              class="position-relative shadow rounded border-top border-5 border-secondary"
+            >
+              <div
+                class="d-flex align-items-center justify-content-center position-absolute top-0 start-50 translate-middle bg-secondary rounded-circle"
+                style="width: 45px; height: 45px; margin-top: -3px"
+              >
+                <i class="fa fa-server text-white"></i>
+              </div>
+              <div class="text-center border-bottom p-4 pt-5">
+                <h4 class="fw-bold">VPS Hosting</h4>
+                <p class="mb-0">
+                  Eirmod erat dolor amet est clita lorem erat justo rebum elitr
+                  eos
+                </p>
+              </div>
+              <div class="text-center border-bottom p-4">
+                <p class="text-primary mb-1">
+                  Latest Offer - <strong>Save 30%</strong>
+                </p>
+                <h1 class="mb-3">
+                  <small
+                    class="align-top"
+                    style="font-size: 22px; line-height: 45px"
+                    >$</small
+                  >5.49<small
+                    class="align-bottom"
+                    style="font-size: 16px; line-height: 40px"
+                    >/ Month</small
+                  >
+                </h1>
+                <a class="btn btn-secondary px-4 py-2" href="">Buy Now</a>
+              </div>
+              <div class="p-4">
+                <p class="border-bottom pb-3">
+                  <i class="fa fa-check text-primary me-3"></i>100 GB Disk Space
+                </p>
+                <p class="border-bottom pb-3">
+                  <i class="fa fa-check text-primary me-3"></i>Unlimited
+                  Bandwith
+                </p>
+                <p class="border-bottom pb-3">
+                  <i class="fa fa-check text-primary me-3"></i>Upgrade to
+                  Positive SSL
+                </p>
+                <p class="border-bottom pb-3">
+                  <i class="fa fa-check text-primary me-3"></i>Automatic Malware
+                  Removal
+                </p>
+                <p class="mb-0">
+                  <i class="fa fa-check text-primary me-3"></i>30 Days Money
+                  Back Guarantee
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-3 wow fadeInUp" data-wow-delay="0.6s">
+            <div
+              class="position-relative shadow rounded border-top border-5 border-primary"
+            >
+              <div
+                class="d-flex align-items-center justify-content-center position-absolute top-0 start-50 translate-middle bg-primary rounded-circle"
+                style="width: 45px; height: 45px; margin-top: -3px"
+              >
+                <i class="fa fa-cog text-white"></i>
+              </div>
+              <div class="text-center border-bottom p-4 pt-5">
+                <h4 class="fw-bold">Dedi Hosting</h4>
+                <p class="mb-0">
+                  Eirmod erat dolor amet est clita lorem erat justo rebum elitr
+                  eos
+                </p>
+              </div>
+              <div class="text-center border-bottom p-4">
+                <p class="text-primary mb-1">
+                  Latest Offer - <strong>Save 30%</strong>
+                </p>
+                <h1 class="mb-3">
+                  <small
+                    class="align-top"
+                    style="font-size: 22px; line-height: 45px"
+                    >$</small
+                  >11.49<small
+                    class="align-bottom"
+                    style="font-size: 16px; line-height: 40px"
+                    >/ Month</small
+                  >
+                </h1>
+                <a class="btn btn-primary px-4 py-2" href="">Buy Now</a>
+              </div>
+              <div class="p-4">
+                <p class="border-bottom pb-3">
+                  <i class="fa fa-check text-primary me-3"></i>100 GB Disk Space
+                </p>
+                <p class="border-bottom pb-3">
+                  <i class="fa fa-check text-primary me-3"></i>Unlimited
+                  Bandwith
+                </p>
+                <p class="border-bottom pb-3">
+                  <i class="fa fa-check text-primary me-3"></i>Upgrade to
+                  Positive SSL
+                </p>
+                <p class="border-bottom pb-3">
+                  <i class="fa fa-check text-primary me-3"></i>Automatic Malware
+                  Removal
+                </p>
+                <p class="mb-0">
+                  <i class="fa fa-check text-primary me-3"></i>30 Days Money
+                  Back Guarantee
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-3 wow fadeInUp" data-wow-delay="0.6s">
+            <div
+              class="position-relative shadow rounded border-top border-5 border-primary"
+            >
+              <div
+                class="d-flex align-items-center justify-content-center position-absolute top-0 start-50 translate-middle bg-primary rounded-circle"
+                style="width: 45px; height: 45px; margin-top: -3px"
+              >
+                <i class="fa fa-cog text-white"></i>
+              </div>
+              <div class="text-center border-bottom p-4 pt-5">
+                <h4 class="fw-bold">Dedi Hosting</h4>
+                <p class="mb-0">
+                  Eirmod erat dolor amet est clita lorem erat justo rebum elitr
+                  eos
+                </p>
+              </div>
+              <div class="text-center border-bottom p-4">
+                <p class="text-primary mb-1">
+                  Latest Offer - <strong>Save 30%</strong>
+                </p>
+                <h1 class="mb-3">
+                  <small
+                    class="align-top"
+                    style="font-size: 22px; line-height: 45px"
+                    >$</small
+                  >11.49<small
+                    class="align-bottom"
+                    style="font-size: 16px; line-height: 40px"
+                    >/ Month</small
+                  >
+                </h1>
+                <a class="btn btn-primary px-4 py-2" href="">Buy Now</a>
+              </div>
+              <div class="p-4">
+                <p class="border-bottom pb-3">
+                  <i class="fa fa-check text-primary me-3"></i>100 GB Disk Space
+                </p>
+                <p class="border-bottom pb-3">
+                  <i class="fa fa-check text-primary me-3"></i>Unlimited
+                  Bandwith
+                </p>
+                <p class="border-bottom pb-3">
+                  <i class="fa fa-check text-primary me-3"></i>Upgrade to
+                  Positive SSL
+                </p>
+                <p class="border-bottom pb-3">
+                  <i class="fa fa-check text-primary me-3"></i>Automatic Malware
+                  Removal
+                </p>
+                <p class="mb-0">
+                  <i class="fa fa-check text-primary me-3"></i>30 Days Money
+                  Back Guarantee
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Pricing End -->
+
+    <!-- Footer Start -->
+    <div
+      class="container-fluid bg-primary text-white footer mt-0 pt-5 wow fadeIn"
+      data-wow-delay="0.1s"
+    >
+      <div class="container py-5 px-lg-5">
+        <div class="row gy-5 gx-4 pt-5">
+          <div class="col-12">
+            <h5 class="fw-bold text-white mb-4">Subscribe Our Newsletter</h5>
+            <div class="position-relative" style="max-width: 400px">
+              <input
+                class="form-control bg-white border-0 w-100 py-3 ps-4 pe-5"
+                type="text"
+                placeholder="Enter your email"
+              />
+              <button
+                type="button"
+                class="btn btn-primary py-2 px-3 position-absolute top-0 end-0 mt-2 me-2"
+              >
+                Submit
+              </button>
+            </div>
+          </div>
+          <div class="col-lg-5 col-md-12">
+            <div class="row gy-5 g-4">
+              <div class="col-md-6">
+                <h5 class="fw-bold text-white mb-4">About Us</h5>
+                <a class="btn btn-link" href="">About Us</a>
+                <a class="btn btn-link" href="">Contact Us</a>
+                <a class="btn btn-link" href="">Privacy Policy</a>
+                <a class="btn btn-link" href="">Terms & Condition</a>
+                <a class="btn btn-link" href="">Support</a>
+              </div>
+              <div class="col-md-6">
+                <h5 class="fw-bold text-white mb-4">Our Services</h5>
+                <a class="btn btn-link" href="">Domain Register</a>
+                <a class="btn btn-link" href="">Shared Hosting</a>
+                <a class="btn btn-link" href="">VPS Hosting</a>
+                <a class="btn btn-link" href="">Dedicated Hosting</a>
+                <a class="btn btn-link" href="">Reseller Hosting</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <h5 class="fw-bold text-white mb-4">Get In Touch</h5>
+            <p class="mb-2">
+              <i class="fa fa-map-marker-alt me-3"></i>Nairobi, Kenya
+            </p>
+            <p class="mb-2">
+              <i class="fa fa-phone-alt me-3"></i>+012 345 67890
+            </p>
+            <p class="mb-2">
+              <i class="fa fa-envelope me-3"></i>siteswift@gmail.com
+            </p>
+            <div class="d-flex pt-2">
+              <a class="btn btn-outline-light btn-social" href=""
+                ><i class="fab fa-twitter"></i
+              ></a>
+              <a class="btn btn-outline-light btn-social" href=""
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a class="btn btn-outline-light btn-social" href=""
+                ><i class="fab fa-youtube"></i
+              ></a>
+              <a class="btn btn-outline-light btn-social" href=""
+                ><i class="fab fa-linkedin-in"></i
+              ></a>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 mt-lg-n5">
+            <div class="bg-light rounded" style="padding: 30px">
+              <input
+                type="text"
+                class="form-control border-0 py-2 mb-2"
+                placeholder="Name"
+              />
+              <input
+                type="email"
+                class="form-control border-0 py-2 mb-2"
+                placeholder="Email"
+              />
+              <textarea
+                class="form-control border-0 mb-2"
+                rows="2"
+                placeholder="Message"
+              ></textarea>
+              <button class="btn btn-primary w-100 py-2">Send Message</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container px-lg-5">
+        <div class="copyright">
+          <div class="row">
+            <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+              &copy; <a href="#">SiteSwift</a>, All Right Reserved. Designed By
+              <a class="border-bottom" href="https://htmlcodex.com"
+                >JoanWaithira</a
+              >
+            </div>
+            <div class="col-md-6 text-center text-md-end">
+              <div class="footer-menu">
+                <a href="">Home</a>
+                <a href="">Cookies</a>
+                <a href="">Help</a>
+                <a href="">FQAs</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Footer End -->
+
+    <!-- Back to Top -->
+    <!-- <a href="#" class="btn btn-lg btn-secondary btn-lg-square back-to-top"
+      ><i class="bi bi-arrow-up"></i
+    ></a> -->
+
+    <script src="main.js"></script>
+  </body>
+</html>
