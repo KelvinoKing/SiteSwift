@@ -28,8 +28,8 @@ This is a web application that allows users to purchase hosting services for the
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/web-hosting-service.git
-cd web-hosting-service
+git clone https://github.com/JoanWaithira/SiteSwift.git
+cd SiteSwift
 ```
 
 ### Create a Virtual Environment
@@ -117,9 +117,3 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 - SQLAlchemy for ORM
 - Bootstrap for the frontend framework
 ```
-
-### Additional Tips
-
-- Replace `https://github.com/yourusername/web-hosting-service.git` with the actual URL of your repository.
-- Make sure `requirements.txt` is up to date with all the dependencies used in your project.
-- Customize the content based on your project's specific details and any additional features you may have implemented.
