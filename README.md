@@ -1,1 +1,1 @@
-SiteSwift Website Template
+SiteSwift web-app
