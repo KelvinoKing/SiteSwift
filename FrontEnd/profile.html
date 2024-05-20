@@ -22,41 +22,37 @@
     <section class="section">
       <section class="wrapper">
         <div class="form signup">
-          <header>Signup</header>
+          <header>Create Your SiteSwift Profile</header>
+          <hr color="white">
           <form action="#">
-            <input type="text" placeholder="Full name" required />
-            <input type="text" placeholder="Email address" required />
-            <input type="password" placeholder="Password" required />
+            <!-- <label for="first_name">First Name:</label> -->
+        <input type="text" name="first_name" placeholder="First Name" required />
+        <br />
+        <!-- <label for="last_name">Last Name:</label> -->
+        <input type="text" name="last_name" placeholder="Last Name" required />
+        <br />
+        <label for="profile_pic">Update profile picture:</label>
+        <input type="file" name="profile_pic" accept="image/*" placeholder="" required />
+        <br />
+        <!-- <label for="email">Email:</label> -->
+        <input type="email" name="email"placeholder="Email:" required />
+        <br />
+        <!-- <label for="phone">Phone</label> -->
+        <input type="text" name="phone" placeholder="Phone" required />
+        <br />
             <div class="checkbox">
               <input type="checkbox" id="signupCheck" />
               <label for="signupCheck">I accept all terms & conditions</label>
             </div>
-            <input type="submit" value="Signup" />
+            <input type="submit" value="Update Profile" />
           </form>
         </div>
 
-        <div class="form login">
-          <header>Login</header>
-          <form action="#">
-            <input type="text" placeholder="Email address" required />
-            <input type="password" placeholder="Password" required />
-            <a href="#">Forgot password?</a>
-            <input type="submit" value="Login" />
-          </form>
+
         </div>
       </section>
 
-      <script>
-        const wrapper = document.querySelector(".wrapper"),
-          signupHeader = document.querySelector(".signup header"),
-          loginHeader = document.querySelector(".login header");
 
-        loginHeader.addEventListener("click", () => {
-          wrapper.classList.add("active");
-        });
-        signupHeader.addEventListener("click", () => {
-          wrapper.classList.remove("active");
-        });
       </script>
     </section>
     <!-- JavaScript Libraries -->
