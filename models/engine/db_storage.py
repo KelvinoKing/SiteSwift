@@ -1,13 +1,32 @@
 import models
 from models.base_model import Base
+from models.base_model import BaseModel
+from models.billing_cycle import BillingCycle
+from models.hosting_plan import HostingPlan
+from models.invoice import Invoice
+from models.order import Order
+from models.payment import Payment
+from models.profile import Profile
+from models.service import Service
 from models.user import User
-from os import getenv
-import sqlalchemy
+import os
+from dotenv import load_dotenv
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, scoped_session
 
 
-classes = {'User': User}
+classes = {
+    'User': User,
+    'Profile': Profile,
+    'Service': Service,
+    'HostingPlan': HostingPlan,
+    'BillingCycle': BillingCycle,
+    'Order': Order,
+    'Invoice': Invoice,
+    'Payment': Payment,
+    }
+
+load_dotenv()
 
 class DBStorage:
     """interacts with MySQL database"""
@@ -16,11 +35,11 @@ class DBStorage:
     
     def __init__(self):
         """Instantiates a DBStorage object"""
-        SITESWIFT_MYSQL_USER = getenv('BOOKSWAP_MYSQL_USER')
-        SITESWIFT_MYSQL_HOST = getenv('BOOKSWAP_MYSQL_HOST')
-        SITESWIFT_MYSQL_PWD = getenv('BOOKSWAP_MYSQL_PWD')
-        SITESWIFT_MYSQL_DB = getenv('BOOKSWAP_MYSQL_DB')
-        SITESWIFT_ENV = getenv('BOOKSWAP_ENV')
+        SITESWIFT_MYSQL_USER = os.getenv('SITESWIFT_MYSQL_USER')
+        SITESWIFT_MYSQL_HOST = os.getenv('SITESWIFT_MYSQL_HOST')
+        SITESWIFT_MYSQL_PWD = os.getenv('SITESWIFT_MYSQL_PWD')
+        SITESWIFT_MYSQL_DB = os.getenv('SITESWIFT_MYSQL_DB')
+        SITESWIFT_ENV = os.getenv('SITESWIFT_ENV')
         
         self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}'.
                                       format(SITESWIFT_MYSQL_USER,
