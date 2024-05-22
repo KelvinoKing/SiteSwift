@@ -7,7 +7,7 @@ class Payment(BaseModel, Base):
     """This class will define the payment model for SITESWIFT"""
 
     __tablename__ = 'payments'
-    order_id = Column(Integer, ForeignKey('order.id'), nullable=False)
+    order_id = Column(String(60), ForeignKey('orders.id'), nullable=False)
     payment_date = Column(DateTime, nullable=False)
     amount = Column(Float, nullable=False)
     payment_method = Column(String(50), nullable=False)  # e.g., 'credit_card', 'paypal'

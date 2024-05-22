@@ -8,7 +8,7 @@ class Profile(BaseModel, Base):
     """This class will define the profile model for SITESWIFT"""
 
     __tablename__ = 'profile'
-    user_id = Column(Integer, ForeignKey('user.id'), nullable=False)
+    user_id = Column(String(60), ForeignKey('users.id'), nullable=False)
     full_name = Column(String(120), nullable=True)
     address = Column(String(200), nullable=True)
     phone = Column(String(20), nullable=True)

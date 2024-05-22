@@ -19,7 +19,6 @@ class BookSwapCommand(cmd.Cmd):
     """"This is the console for BookSwap"""
     prompt = '(BookSwap) '
     classes = {
-        'BaseModel': BaseModel,
         'User': User,
         'Profile': Profile,
         'Service': Service,
@@ -27,7 +26,7 @@ class BookSwapCommand(cmd.Cmd):
         'BillingCycle': BillingCycle,
         'Order': Order,
         'Invoice': Invoice,
-        'Payment': Payment
+        'Payment': Payment,
         }
 
     def do_quit(self, arg):
