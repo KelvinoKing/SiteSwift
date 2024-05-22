@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sales - SiteSwift</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="admin.css" />
+  </head>
+  <body>
+    <div class="grid-container">
+      <!-- Header -->
+      <header class="header">
+        <button
+          class="menu-icon"
+          aria-label="Open Sidebar"
+          onclick="openSidebar()"
+        >
+          <span class="material-icons-outlined">menu</span>
+        </button>
+        <div class="header-left">
+          <button aria-label="Search">
+            <span class="material-icons-outlined">search</span>
+          </button>
+        </div>
+        <div class="header-right">
+          <button aria-label="Notifications">
+            <span class="material-icons-outlined">notifications</span>
+          </button>
+          <button aria-label="Email">
+            <span class="material-icons-outlined">email</span>
+          </button>
+          <button aria-label="Account">
+            <span class="material-icons-outlined">account_circle</span>
+          </button>
+        </div>
+      </header>
+      <!-- End Header -->
+
+      <!-- Sidebar -->
+      <aside id="sidebar" class="sidebar">
+        <div class="sidebar-title">
+          <div class="sidebar-brand">
+            <span class="material-icons-outlined">business</span> SiteSwift
+          </div>
+          <button
+            aria-label="Close Sidebar"
+            class="close-icon"
+            onclick="closeSidebar()"
+          >
+            <span class="material-icons-outlined">close</span>
+          </button>
+        </div>
+
+        <ul class="sidebar-list">
+          <li class="sidebar-list-item">
+            <a href="./admin-dashboard.html" target="_self">
+              <span class="material-icons-outlined">dashboard</span> Dashboard
+            </a>
+          </li>
+          <li class="sidebar-list-item">
+            <a href="./admin-customers.html" target="_self">
+              <span class="material-icons-outlined">inventory_2</span> Customers
+            </a>
+          </li>
+          <li class="sidebar-list-item">
+            <a href="./admin-sales.html" target="_self">
+              <span class="material-icons-outlined">category</span> Sales
+            </a>
+            <ul class="nav-content collapse">
+              <li>
+                <a href="admin-sales.html#continuing">
+                  <span class="material-icons-outlined">chevron_right</span
+                  ><span>Pending</span>
+                </a>
+              </li>
+              <li>
+                <a href="admin-sales.html#completed">
+                  <span class="material-icons-outlined">chevron_right</span
+                  ><span>Completed</span>
+                </a>
+              </li>
+              <li>
+                <a href="admin-sales.html#rejected">
+                  <span class="material-icons-outlined">chevron_right</span
+                  ><span>Rejected</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </aside>
+      <!-- End Sidebar -->
+
+      <!-- Main -->
+      <main class="main-container">
+        <div class="main-title">
+          <h2>SALES</h2>
+        </div>
+
+        <div class="main-content">
+          <div class="table-container">
+            <div class="table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Sale ID</th>
+                    <th>Product</th>
+                    <th>Customer</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="sales-table-body">
+                  <tr data-status="Completed">
+                    <td>101</td>
+                    <td>Product A</td>
+                    <td>John Doe</td>
+                    <td>$100</td>
+                    <td>Completed</td>
+                  </tr>
+                  <tr data-status="Continuing">
+                    <td>102</td>
+                    <td>Product B</td>
+                    <td>Jane Smith</td>
+                    <td>$200</td>
+                    <td>Continuing</td>
+                  </tr>
+                  <tr data-status="Rejected">
+                    <td>103</td>
+                    <td>Product C</td>
+                    <td>Bob Johnson</td>
+                    <td>$150</td>
+                    <td>Rejected</td>
+                  </tr>
+                  <tr data-status="Completed">
+                    <td>104</td>
+                    <td>Product D</td>
+                    <td>Alice Brown</td>
+                    <td>$250</td>
+                    <td>Completed</td>
+                  </tr>
+                  <tr data-status="Continuing">
+                    <td>105</td>
+                    <td>Product E</td>
+                    <td>Charlie Black</td>
+                    <td>$300</td>
+                    <td>Continuing</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </main>
+      <!-- End Main -->
+    </div>
+
+    <!-- Custom JS -->
+    <script src="main.js"></script>
+  </body>
+</html>
