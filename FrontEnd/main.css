@@ -776,6 +776,7 @@ p {
 }
 
 .form-group .btn-primary {
+  margin-top: 0;
   border-top-right-radius: 4px;
   border-bottom-right-radius: 4px;
   color: white;
@@ -789,6 +790,7 @@ p {
 
 .search-domain {
   width: calc(100% - 120px);
+  top: 50px;
 }
 
 @media (max-width: 768px) {
@@ -1174,4 +1176,64 @@ tbody tr td {
   margin-right: 0;
   padding-right: 0;
   border-right: none;
+}
+
+/*** Team Start ***/
+.team .team-item {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.team .team-item .team-text {
+  background: var(--bs-primary);
+}
+
+.team .team-item .team-social {
+  position: absolute;
+  top: -180px;
+  left: 20px;
+  opacity: 0;
+  transition: 0.5s;
+}
+
+.team .team-item:hover .team-social {
+  top: 20px;
+  left: 20px;
+  opacity: 1;
+}
+
+.team .team-item .team-img {
+  position: relative;
+  width: 100%;
+}
+
+.team .team-item .team-img::after {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  width: 100%;
+  height: 0;
+  transition: 0.5s ease;
+}
+
+.team .team-item:hover .team-img::after {
+  bottom: 0;
+  height: 100%;
+}
+
+.team .team-item .team-text {
+  transition: 0.5s;
+}
+
+.team .team-item:hover .team-text {
+  background: var(--bs-secondary);
+}
+.team a:hover {
+  color: red;
+  scale: 1.2;
 }
