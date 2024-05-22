@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard - SiteSwift</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="admin.css" />
+  </head>
+  <body>
+    <div class="grid-container">
+      <!-- Header -->
+      <header class="header">
+        <button
+          class="menu-icon"
+          aria-label="Open Sidebar"
+          onclick="openSidebar()"
+        >
+          <span class="material-icons-outlined">menu</span>
+        </button>
+        <div class="header-left">
+          <button aria-label="Search">
+            <span class="material-icons-outlined">search</span>
+          </button>
+        </div>
+        <div class="header-right">
+          <button aria-label="Notifications">
+            <span class="material-icons-outlined">notifications</span>
+          </button>
+          <button aria-label="Email">
+            <span class="material-icons-outlined">email</span>
+          </button>
+          <button aria-label="Account">
+            <span class="material-icons-outlined">account_circle</span>
+          </button>
+        </div>
+      </header>
+      <!-- End Header -->
+
+      <!-- Sidebar -->
+      <aside id="sidebar" class="sidebar">
+        <div class="sidebar-title">
+          <div class="sidebar-brand">
+            <span class="material-icons-outlined">business</span> SiteSwift
+          </div>
+          <button
+            aria-label="Close Sidebar"
+            class="close-icon"
+            onclick="closeSidebar()"
+          >
+            <span class="material-icons-outlined">close</span>
+          </button>
+        </div>
+
+        <ul class="sidebar-list">
+          <li class="sidebar-list-item">
+            <a href="admin-dashboard.html" target="_self">
+              <span class="material-icons-outlined">dashboard</span> Dashboard
+            </a>
+          </li>
+          <li class="sidebar-list-item">
+            <a href="./admin-customers.html" target="_self">
+              <span class="material-icons-outlined">inventory_2</span> Customers
+            </a>
+          </li>
+          <li class="sidebar-list-item">
+            <a href="./admin-sales.html" target="_self">
+              <span class="material-icons-outlined">category</span> Sales
+            </a>
+            <ul class="nav-content collapse">
+              <li>
+                <a href="sales.html#continuing">
+                  <span class="material-icons-outlined">chevron_right</span
+                  ><span>Pending</span>
+                </a>
+              </li>
+              <li>
+                <a href="sales.html#completed">
+                  <span class="material-icons-outlined">chevron_right</span
+                  ><span>Completed</span>
+                </a>
+              </li>
+              <li>
+                <a href="sales.html#rejected">
+                  <span class="material-icons-outlined">chevron_right</span
+                  ><span>Rejected</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </aside>
+      <!-- End Sidebar -->
+
+      <!-- Main -->
+      <main class="main-container">
+        <div class="main-title">
+          <h2>DASHBOARD</h2>
+        </div>
+
+        <div class="main-cards">
+          <div class="card">
+            <div class="card-inner">
+              <h3>PRODUCTS</h3>
+              <span class="material-icons-outlined">inventory_2</span>
+            </div>
+            <h1>249</h1>
+          </div>
+
+          <div class="card">
+            <div class="card-inner">
+              <h3>CATEGORIES</h3>
+              <span class="material-icons-outlined">category</span>
+            </div>
+            <h1>25</h1>
+          </div>
+
+          <div class="card">
+            <div class="card-inner">
+              <h3>CUSTOMERS</h3>
+              <span class="material-icons-outlined">groups</span>
+            </div>
+            <h1>1500</h1>
+          </div>
+
+          <div class="card">
+            <div class="card-inner">
+              <h3>ALERTS</h3>
+              <span class="material-icons-outlined"
+                >notification_important</span
+              >
+            </div>
+            <h1>56</h1>
+          </div>
+        </div>
+
+        <div class="charts">
+          <div class="charts-card">
+            <h2 class="chart-title">Top 5 Products</h2>
+            <div id="bar-chart"></div>
+          </div>
+
+          <div class="charts-card">
+            <h2 class="chart-title">Purchase and Sales Orders</h2>
+            <div id="area-chart"></div>
+          </div>
+        </div>
+      </main>
+      <!-- End Main -->
+    </div>
+
+    <!-- Scripts -->
+    <!-- ApexCharts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.35.5/apexcharts.min.js"></script>
+    <!-- Custom JS -->
+    <script src="main.js"></script>
+  </body>
+</html>

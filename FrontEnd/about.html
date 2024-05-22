@@ -44,35 +44,6 @@
     <link rel="stylesheet" href="main.css" />
   </head>
   <body>
-    <!-- <nav class="navbar p-5">
-
-      <div class="container">
-        <a href="#" class="logo">SiteSwift</a>
-        <ul class="nav-menu">
-          <li><a href="#home">Home</a></li>
-          <li class="dropdown">
-            <a href="#features">Features</a>
-            <ul class="dropdown-menu">
-              <li><a href="#shared">Shared Hosting</a></li>
-              <li><a href="#vps">VPS Hosting</a></li>
-              <li><a href="#dedicated">Dedicated Hosting</a></li>
-            </ul>
-          </li>
-          <li><a href="#plans">Plans</a></li>
-          <li><a href="#about">About Us</a></li>
-          <li><a href="#contact">Contact Us</a></li>
-          <li class="dropdown">
-            <a href="#features">Account</a>
-            <ul class="dropdown-menu">
-              <li><a href="#shared">SignIn</a></li>
-              <li><a href="#vps">SignUp</a></li>
-              <li><a href="#dedicated">Profile</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-    </nav> -->
-
     <header class="header">
       <!-- Topbar -->
       <div class="container">
@@ -93,42 +64,45 @@
               <div class="col-lg-3 col-md-3 col-12">
                 <!-- Start Logo -->
                 <div class="logo">
-                  <h2>SiteSwift</h2>
+                  <h1>SiteSwift</h1>
                 </div>
                 <!-- End Logo -->
                 <!-- Mobile Nav -->
                 <div class="mobile-nav">
-                  <div class="hamburger-menu" id="hamburger-menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                  </div>
+                  <button class="hamburger-menu" id="hamburger-menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                  </button>
                 </div>
                 <!-- End Mobile Nav -->
               </div>
               <div class="col-lg-7 col-md-9 col-12">
                 <!-- Main Menu -->
-                <div class="main-menu">
+                <div class="main-menu" id="main-menu">
                   <nav class="navigation">
-                    <ul class="nav menu">
+                    <ul class="nav menu" id="menu">
                       <li>
-                        <a href="./index.html">Home </a>
-                        <!-- <ul class="dropdown">
-                          <li><a href="index.html">Home Page 1</a></li>
-                        </ul> -->
+                        <a href="./index.html"
+                          >Home <i class="icofont-rounded-down"></i
+                        ></a>
                       </li>
-                      <li class="active">
-                        <a href="./about.html">About Us </a>
+                      <li class="active"><a href="./about.html">About </a></li>
+                      <li>
+                        <a href="./services.html"
+                          >Services <i class="icofont-rounded-down"></i>
+                        </a>
+                        <ul class="dropdown">
+                          <li><a href="404.html">404 Error</a></li>
+                          <li><a href="404.html">404 Error</a></li>
+                        </ul>
                       </li>
-                      <li><a href="./services.html">Services </a></li>
                       <li>
                         <a href="#"
                           >Pages <i class="icofont-rounded-down"></i
                         ></a>
                         <ul class="dropdown">
-                          <li><a href="404.html">404 Error</a></li>
-                          <li><a href="404.html">404 Error</a></li>
-                          <li><a href="404.html">404 Error</a></li>
+                          <li><a href="./team.html">The team</a></li>
                         </ul>
                       </li>
                       <li>
@@ -145,9 +119,9 @@
                 </div>
                 <!--/ End Main Menu -->
               </div>
-              <div class="col-lg-2 col-12">
-                <div class="get-quote">
-                  <a href="appointment.html" class="btn">Book Appointment</a>
+              <div class="col-lg-2 col-12 p-2">
+                <div class="get-quote btn-primary">
+                  <a href="./signup.html" class="btn">Get Started</a>
                 </div>
               </div>
             </div>
@@ -211,6 +185,60 @@
     </section>
 
     <!-- Core features -->
+
+    <!-- A bout -->
+    <div class="container-xxl py-5">
+      <div class="container px-lg-5">
+        <div class="row g-5 align-items-center">
+          <div class="col-lg-7 wow fadeInUp" data-wow-delay="0.1s">
+            <div class="section-title position-relative mb-4 pb-4">
+              <h1 class="mb-2">Welcome to SiteSwift</h1>
+            </div>
+            <p class="mb-4">
+              At SiteSwift, we're committed to accelerating your online journey.
+              Whether you're a seasoned developer or just starting, our hosting
+              services are designed to empower you every step of the way. With
+              SiteSwift, you're not just getting hosting – you're gaining a
+              partner in your digital success. Our cutting-edge infrastructure
+              ensures your website loads at lightning speed, maximizing user
+              satisfaction and search engine rankings. Say goodbye to slow
+              loading times and hello to a seamless online experience.
+            </p>
+            <div class="row g-3">
+              <div class="col-sm-4 wow fadeIn" data-wow-delay="0.1s">
+                <div class="bg-light rounded text-center p-4">
+                  <i class="fa fa-users-cog fa-2x text-primary mb-2"></i>
+                  <h2 class="mb-1" data-toggle="counter-up">2976</h2>
+                  <p class="mb-0">Experts</p>
+                </div>
+              </div>
+              <div class="col-sm-4 wow fadeIn" data-wow-delay="0.3s">
+                <div class="bg-light rounded text-center p-4">
+                  <i class="fa fa-users fa-2x text-primary mb-2"></i>
+                  <h2 class="mb-1" data-toggle="counter-up">200</h2>
+                  <p class="mb-0">Clients</p>
+                </div>
+              </div>
+              <div class="col-sm-4 wow fadeIn" data-wow-delay="0.5s">
+                <div class="bg-light rounded text-center p-4">
+                  <i class="fa fa-check fa-2x text-primary mb-2"></i>
+                  <h2 class="mb-1" data-toggle="counter-up">1234</h2>
+                  <p class="mb-0">Projects</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-5">
+            <img
+              class="img-fluid wow zoomIn"
+              data-wow-delay="0.5s"
+              src="images/about.png"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- About end -->
 
     <!-- core_features_start -->
     <div class="container-xxl py-5">
