@@ -138,14 +138,13 @@ class DBStorage:
         """Add a new user to the database
         """
         try:
-            user = User(first_name=first_name, last_name=last_name, email=email, hashed_password=hashed_password)
+            user = User(first_name=first_name, last_name=last_name, email=email, password_hash=hashed_password)
             self._session.add(user)
             self._session.commit()
             return user
-        except Exception:
-            self._session.rollback()
-            user = None
-            return user
+        except Exception as e:
+            raise e
+
         
     def find_user_by(self, **kwargs) -> User:
         """Find a user by a given attribute

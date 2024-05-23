@@ -15,7 +15,7 @@ load_dotenv()
 
 Auth = Auth()
 app = Flask(__name__)
-app.secret_key = os.getenv('SITESWIFT_API_SECRET_KEY')
+app.secret_key = "SITESWIFT_SECRET"
 app.config.update(SESSION_COOKIE_MAX_AGE=60)
 
 
@@ -33,42 +33,126 @@ def register() -> str:
     return render_template('signup.html')
 
 
-@app.route("/signup", methods=['GET', 'POST'], strict_slashes=False)
-def signup() -> Union[str, Tuple[str, int]]:
+@app.route("/users", methods=['POST'], strict_slashes=False)
+def users() -> Union[str, Tuple[str, int]]:
     """ POST /register
     """
-    first_name = request.form.get('first_name')
-    last_name = request.form.get('last_name')
-    email = request.form.get('email')
-    password = request.form.get('password')
+    user_json = request.get_json()
+    if not user_json:
+        return ('Missing JSON', 400)
+    if 'email' not in user_json:
+        abort(400, 'Missing email')
+    if 'password' not in user_json:
+        abort(400, 'Missing password')
+    if 'first_name' not in user_json:
+        abort(400, 'Missing first_name')
+    if 'last_name' not in user_json:
+        abort(400, 'Missing last_name')
+    
+    email = user_json.get('email')
+    password = user_json.get('password')
+    first_name = user_json.get('first_name')
+    last_name = user_json.get('last_name')
+
     try:
         Auth.register_user(first_name, last_name, email, password)
-        return redirect('/login')
+        flash('User created successfully. Kindly login to continue.')
+        return redirect('/register')
     except ValueError:
-        return ('User {} already exists'.format(email), 400)
+        return jsonify('User {} already exists'.format(email), 400)
     
 
-@app.route("/login", methods=['POST'], strict_slashes=False)
+@app.route("/sessions", methods=['POST'], strict_slashes=False)
 def login() -> Union[str, Tuple[str, int]]:
     """ POST /login
     """
-    email = request.form.get('email')
-    password = request.form.get('password')
-    try:
-        if Auth.valid_login(email, password):
-            return redirect('/profile')
-        else:
-            flash('Invalid login')
-            return redirect('/login')
-    except NoResultFound:
-        return ('Invalid login', 401)
+
+    user_json = request.get_json()
+    if not user_json:
+        return ('Missing JSON', 400)
+    if 'email' not in user_json:
+        abort(400, 'Missing email')
+    if 'password' not in user_json:
+        abort(400, 'Missing password')
+
+    email = user_json.get('email')
+    password = user_json.get('password')
     
+    if not Auth.valid_login(email, password):
+        return ('Invalid email or password', 401)
+    session_id = Auth.create_session(email)
+    print('Session created: {}'.format(session_id))
+    if not session_id:
+        abort(401)
+    resp = Response('Success')
+    resp.set_cookie('session_id', session_id)
+    return resp
+
+
+@app.route("/sessions", methods=['DELETE'], strict_slashes=False)
+def logout() -> str:
+    """ DELETE /logout
+    """
+    session_id = request.cookies.get('session_id')
+    user = Auth.get_user_from_session_id(session_id)
+    if not user:
+        abort(403)
+    Auth.destroy_session(user.id)
+    return redirect('/')
+    
+
+@app.route("/account", methods=['GET'], strict_slashes=False)
+def account() -> str:
+    """ GET /account
+    """
+    session_id = request.cookies.get('session_id')
+    user = Auth.get_user_from_session_id(session_id)
+    if not user:
+        return redirect('/register')
+    return render_template('myaccount.html', user=user)
+
 
 @app.route("/profile", methods=['GET'], strict_slashes=False)
 def profile() -> str:
     """ GET /profile
     """
-    return render_template('profile.html')
+    session_id = request.cookies.get('session_id')
+    user = Auth.get_user_from_session_id(session_id)
+    if not user:
+        flash('Please login to continue.')
+        return redirect('/register')
+    return render_template('profile.html', user=user)
+
+
+@app.route("/reset_password", methods=['GET'], strict_slashes=False)
+def reset_password() -> str:
+    """ GET /reset_password
+    """
+    email = request.form.get('email')
+    user = Auth._db.find_user_by(email=email)
+    if not user:
+        flash('User not found')
+        return redirect('/register')
+    token = Auth.get_reset_password_token(email)
+    flash('Reset password token: {}'.format(token))
+    return render_template('reset_password.html')
+
+
+@app.route("/reset_password", methods=['POST'], strict_slashes=False)
+def update_password() -> str:
+    """ POST /reset_password
+    """
+    email = request.form.get('email')
+    user = Auth._db.find_user_by(email=email)
+    token = user.reset_token
+    password = request.form.get('password')
+    try:
+        Auth.update_password(token, password)
+        flash('Password updated successfully. Kindly login to continue.')
+        return redirect('/register')
+    except ValueError:
+        flash('Invalid token')
+        return redirect('/register')
 
 
 

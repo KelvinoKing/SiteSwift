@@ -21,36 +21,37 @@
 
     <section class="section">
       <section class="wrapper">
-        <div class="form signup">
+        <div class="form-signup">
           <header>Signup</header>
           <form action="#">
-            <input type="text" placeholder="First Name" required />
-            <input type="text" placeholder="Last Name" required />
-            <input type="text" placeholder="Email address" required />
-            <input type="password" placeholder="Password" required />
+            <input id="user-first-name" type="text" placeholder="First Name" required />
+            <input id="user-last-name" type="text" placeholder="Last Name" required />
+            <input id="pass-email" type="text" placeholder="Email address" required />
+            <input id="pass-password" type="password" placeholder="Password" required />
+            <input id="pass-repassword", type="password", placeholder="Confirm Password" required/>
             <div class="checkbox">
               <input type="checkbox" id="signupCheck" />
               <label for="signupCheck">I accept all terms & conditions</label>
             </div>
-            <input type="submit" value="Signup" />
+            <input type="submit" class="button" value="Signup" />
           </form>
         </div>
 
-        <div class="form login">
+        <div class="form-login">
           <header>Login</header>
           <form action="#">
-            <input type="text" placeholder="Email address" required />
-            <input type="password" placeholder="Password" required />
+            <input id="user_email" type="text" placeholder="Email address" required />
+            <input id="user_pass" type="password" placeholder="Password" required />
             <a href="#">Forgot password?</a>
-            <input type="submit" value="Login" />
+            <input type="submit" class="button" value="Login" />
           </form>
         </div>
       </section>
 
       <script>
         const wrapper = document.querySelector(".wrapper"),
-          signupHeader = document.querySelector(".signup header"),
-          loginHeader = document.querySelector(".login header");
+          signupHeader = document.querySelector(".form-signup header"),
+          loginHeader = document.querySelector(".form-login header");
 
         loginHeader.addEventListener("click", () => {
           wrapper.classList.add("active");
@@ -70,5 +71,6 @@
 
     <!-- Template Javascript -->
     <script src="main.js"></script>
+    <script src="../static/scripts/signup.js?{{ cached_id }}"></script>
   </body>
 </html>
