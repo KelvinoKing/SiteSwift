@@ -13,5 +13,6 @@ class User(BaseModel, Base):
     last_name = Column(String(80), nullable=False)
     email = Column(String(120), unique=True, nullable=False)
     password_hash = Column(String(128), nullable=False)
+    image = Column(String(250), nullable=True)
     session_id = Column(String(250), nullable=True)
     reset_token = Column(String(250), nullable=True)

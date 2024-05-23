@@ -17,10 +17,12 @@ from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.exc import InvalidRequestError
 from sqlalchemy import tuple_
 from sqlalchemy.orm import Session
+from models.admin import Admin
 
 
 classes = {
     'User': User,
+    'Admin': Admin,
     'Profile': Profile,
     'Service': Service,
     'HostingPlan': HostingPlan,
@@ -164,7 +166,7 @@ class DBStorage:
             raise NoResultFound
         return result
 
-    def update_user(self, user_id: int, **kwargs) -> None:
+    def update_user(self, user_id: str, **kwargs) -> None:
         """Update a user in the database
         """
         user = self._session.query(User).filter(User.id == user_id).first()
@@ -173,6 +175,48 @@ class DBStorage:
         for key, value in kwargs.items():
             if hasattr(user, key):
                 setattr(user, key, value)
+            else:
+                raise ValueError
+        self._session.commit()
+
+    def add_admin(self, first_name: str, last_name: str, email: str, hashed_password: str) -> Admin:
+        """Add a new admin to the database
+        """
+        try:
+            admin = Admin(first_name=first_name, last_name=last_name, email=email, password_hash=hashed_password)
+            self._session.add(admin)
+            self._session.commit()
+            return admin
+        except Exception as e:
+            raise e
+        
+    def find_admin_by(self, **kwargs) -> Admin:
+        """Find an admin by a given attribute
+        """
+        fields, values = [], []
+        if not kwargs:
+            return None
+        for key, value in kwargs.items():
+            if hasattr(Admin, key):
+                fields.append(getattr(Admin, key))
+                values.append(value)
+            else:
+                raise InvalidRequestError
+        result = self._session.query(Admin).filter(tuple_(*fields).
+                                                  in_([tuple(values)])).first()
+        if result is None:
+            raise NoResultFound
+        return result
+    
+    def update_admin(self, admin_id: str, **kwargs) -> None:
+        """Update an admin in the database
+        """
+        admin = self._session.query(Admin).filter(Admin.id == admin_id).first()
+        if admin is None:
+            return
+        for key, value in kwargs.items():
+            if hasattr(admin, key):
+                setattr(admin, key, value)
             else:
                 raise ValueError
         self._session.commit()

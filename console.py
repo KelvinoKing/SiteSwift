@@ -11,6 +11,7 @@ from models.payment import Payment
 from models.profile import Profile
 from models.service import Service
 from models.user import User
+from models.admin import Admin
 import shlex
 
 
@@ -20,6 +21,7 @@ class BookSwapCommand(cmd.Cmd):
     prompt = '(BookSwap) '
     classes = {
         'User': User,
+        'Admin': Admin,
         'Profile': Profile,
         'Service': Service,
         'HostingPlan': HostingPlan,
