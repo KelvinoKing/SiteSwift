@@ -91,6 +91,47 @@ $(document).ready(function() {
       }
     });
   });
+
+  // Admin Sign In Button Click Event
+  $(".admin-form-login .button").click(function() {
+    // Retrieve form data
+    var email = $(".admin-form-login #admin_user_email").val();
+    var password = $(".admin-form-login #admin_user_pass").val();
+
+    // Create login object
+    var loginData = {
+      "email": email,
+      "password": password
+    };
+
+    // Make call for authentication (You need to implement this endpoint in your API)
+    $.ajax({
+      type: "POST",
+      url: "/admin/sessions", // Adjust the URL based on your API endpoint for authentication
+      contentType: "application/json",
+      data: JSON.stringify(loginData),
+      xhrFields: {
+        withCredentials: true  // Include credentials
+    },
+      success: function(response) {
+        alert("Login successful");
+        // You can redirect or perform additional actions after successful login
+        // Redirect to the dashboard after successful login
+        window.location.href = "admin/account";
+      },
+      error: function(xhr, status, error) {
+        var errorMessage = "Error loging in";
+      
+        if (xhr.responseJSON && xhr.responseJSON.message) {
+          errorMessage += ": " + xhr.responseJSON.message;
+        } else {
+          errorMessage += ": " + status + " - " + error;
+        }
+      
+        alert(errorMessage + " Please check your email and password");
+      }
+    });
+  });
 });
 
   

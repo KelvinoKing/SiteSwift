@@ -9,6 +9,7 @@ The password should be encoded to base64 before hashing.
 import bcrypt
 from models.engine.db_storage import DBStorage
 from models.user import User
+from models.admin import Admin
 from sqlalchemy.orm.exc import NoResultFound
 import uuid
 
@@ -134,4 +135,125 @@ class Auth:
             hashed_password=hashed_password,
             reset_token=None,
             )
+        return None
+    
+    def update_user(self, user_id: str, **kwargs) -> None:
+        """Update a user profile
+        """
+        user = None
+        try:
+            user = self._db.find_user_by(id=user_id)
+        except NoResultFound:
+            user = None
+        if user is None:
+            raise ValueError
+        self._db.update_user(user.id, **kwargs)
+        return None
+    
+    def register_admin(self, first_name: str, last_name: str, email: str, password: str) -> Admin:
+        """Register a new admin with the database
+        """
+        try:
+            admin = self._db.find_admin_by(email=email)
+            if admin:
+                raise ValueError("Admin {} already exists".format(email))
+        except NoResultFound:
+            hashed_password = password
+            admin = self._db.add_admin(first_name, last_name, email, hashed_password)
+        return admin
+    
+    def valid_admin_login(self, email: str, password: str) -> bool:
+        """Validate an admin login
+        """
+        try:
+            admin = self._db.find_admin_by(email=email)
+            if password != admin.password_hash:
+                return False
+            return True
+        except NoResultFound:
+            return False
+        except ValueError:
+            return False
+        
+    def create_admin_session(self, email: str) -> str:
+        """Create a session for the admin
+        """
+        session_id = None
+        try:
+            admin = self._db.find_admin_by(email=email)
+            session_id = _generate_uuid()
+            admin.session_id = session_id
+            self._db._session.commit()
+        except NoResultFound:
+            return None
+        return session_id
+    
+    def get_admin_from_session_id(self, session_id: str) -> Admin:
+        """
+        Get an admin from a session ID
+        """
+        if session_id is None:
+            return None
+        try:
+            admin = self._db.find_admin_by(session_id=session_id)
+            return admin
+        except NoResultFound:
+            return None
+        
+    def destroy_admin_session(self, admin_id: int) -> None:
+        """
+        Destroy an admin session
+        """
+        if admin_id is None:
+            return None
+        try:
+            admin = self._db.find_admin_by(id=admin_id)
+            self._db.update_admin(admin.id, session_id=None)
+        except NoResultFound:
+            return None
+        return None
+    
+    def get_admin_reset_password_token(self, email: str) -> str:
+        """Generate a reset token for an admin
+        """
+        admin = None
+        try:
+            admin = self._db.find_admin_by(email=email)
+        except NoResultFound:
+            admin = None
+        if admin is None:
+            raise ValueError
+        reset_token = _generate_uuid()
+        self._db.update_admin(admin.id, reset_token=reset_token)
+        return reset_token
+    
+    def update_admin_password(self, reset_token: str, password: str) -> None:
+        """Update an admin password
+        """
+        admin = None
+        try:
+            admin = self._db.find_admin_by(reset_token=reset_token)
+        except NoResultFound:
+            admin = None
+        if admin is None:
+            raise ValueError
+        hashed_password = _hash_password(password)
+        self._db.update_admin(
+            admin.id,
+            password_hash=hashed_password,
+            reset_token=None,
+            )
+        return None
+    
+    def update_admin(self, admin_id: str, **kwargs) -> None:
+        """Update an admin profile
+        """
+        admin = None
+        try:
+            admin = self._db.find_admin_by(id=admin_id)
+        except NoResultFound:
+            admin = None
+        if admin is None:
+            raise ValueError
+        self._db.update_admin(admin.id, **kwargs)
         return None

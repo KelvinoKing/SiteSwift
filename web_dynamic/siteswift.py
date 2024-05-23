@@ -153,6 +153,135 @@ def update_password() -> str:
     except ValueError:
         flash('Invalid token')
         return redirect('/register')
+    
+
+@app.route("/update_profile", methods=['POST'], strict_slashes=False)
+def update_profile() -> str:
+    """ POST /update_profile
+    """
+    session_id = request.cookies.get('session_id')
+    user = Auth.get_user_from_session_id(session_id)
+    if not user:
+        flash('Please login to continue.')
+        return redirect('/register')
+    user_json = request.get_json()
+    if not user_json:
+        return ('Missing JSON', 400)
+    
+    Auth.update_user(user.id, **user_json)
+    flash('Profile updated successfully')
+    return redirect('/profile')
+
+
+@app.route("/services", methods=['GET'], strict_slashes=False)
+def services() -> str:
+    """ GET /services
+    """
+    return render_template('services.html')
+
+
+@app.route("/team", methods=['GET'], strict_slashes=False)
+def team() -> str:
+    """ GET /team
+    """
+    return render_template('team.html')
+
+
+@app.route("/about", methods=['GET'], strict_slashes=False)
+def about() -> str:
+    """ GET /about
+    """
+    return render_template('about.html')
+
+
+@app.route("/admin", methods=['GET'], strict_slashes=False)
+def admin() -> str:
+    """ GET /admin
+    """
+    return render_template('admin-signup.html')
+
+
+@app.route("/admin/sessions", methods=['POST'], strict_slashes=False)
+def admin_login() -> Union[str, Tuple[str, int]]:
+    """ POST /login
+    """
+
+    user_json = request.get_json()
+    if not user_json:
+        return ('Missing JSON', 400)
+    if 'email' not in user_json:
+        abort(400, 'Missing email')
+    if 'password' not in user_json:
+        abort(400, 'Missing password')
+
+    email = user_json.get('email')
+    password = user_json.get('password')
+    
+    if not Auth.valid_admin_login(email, password):
+        return ('Invalid email or password', 401)
+    session_id = Auth.create_admin_session(email)
+    print('Session created: {}'.format(session_id))
+    if not session_id:
+        abort(401)
+    resp = Response('Success')
+    resp.set_cookie('session_id', session_id)
+    return resp
+
+
+@app.route("/admin/sessions", methods=['DELETE'], strict_slashes=False)
+def admin_logout() -> str:
+    """ DELETE /logout
+    """
+    session_id = request.cookies.get('session_id')
+    user = Auth.get_admin_from_session_id(session_id)
+    if not user:
+        abort(403)
+    Auth.destroy_admin_session(user.id)
+    return redirect('/admin')
+
+
+@app.route("/admin/account", methods=['GET'], strict_slashes=False)
+def admin_account() -> str:
+    """ GET /account
+    """
+    session_id = request.cookies.get('session_id')
+    user = Auth.get_admin_from_session_id(session_id)
+    if not user:
+        return redirect('/admin')
+    return render_template('admin.html', user=user)
+
+
+@app.route("/admin/account/dashboard", methods=['GET'], strict_slashes=False)
+def admin_dashboard() -> str:
+    """ GET /account/dashboard
+    """
+    session_id = request.cookies.get('session_id')
+    user = Auth.get_admin_from_session_id(session_id)
+    if not user:
+        return redirect('/admin')
+    return render_template('admin-dashboard.html')
+
+
+@app.route("/admin/account/customers", methods=['GET'], strict_slashes=False)
+def admin_customers() -> str:
+    """ GET /account/customers
+    """
+    session_id = request.cookies.get('session_id')
+    user = Auth.get_admin_from_session_id(session_id)
+    if not user:
+        return redirect('/admin')
+    return render_template('admin-customers.html')
+
+
+@app.route("/admin/account/sales", methods=['GET'], strict_slashes=False)
+def admin_sales() -> str:
+    """ GET /account/sales
+    """
+    session_id = request.cookies.get('session_id')
+    user = Auth.get_admin_from_session_id(session_id)
+    if not user:
+        return redirect('/admin')
+    return render_template('admin-sales.html')
 
 
 
