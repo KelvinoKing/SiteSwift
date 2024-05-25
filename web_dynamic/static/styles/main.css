@@ -62,7 +62,7 @@ a {
   bottom: -86%;
   transform: translateX(-50%);
   width: calc(100% + 220px);
-  padding: 20px 140px;
+  padding: 70px 140px;
   border-radius: 50%;
   height: 100%;
   background: #fff;
@@ -1237,3 +1237,5 @@ tbody tr td {
   color: red;
   scale: 1.2;
 }
+
+/* admin */

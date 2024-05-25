@@ -12,7 +12,10 @@
       href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="admin.css" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles/admin.css') }}"
+    />
   </head>
   <body>
     <div class="grid-container">
@@ -61,36 +64,36 @@
 
         <ul class="sidebar-list">
           <li class="sidebar-list-item">
-            <a href="./admin-dashboard.html" target="_self">
+            <a href="{{ url_for('admin_dashboard') }}">
               <span class="material-icons-outlined">dashboard</span> Dashboard
             </a>
           </li>
           <li class="sidebar-list-item">
-            <a href="./admin-customers.html" target="_self">
+            <a href="{{ url_for('admin_customers') }}">
               <span class="material-icons-outlined">inventory_2</span> Customers
             </a>
           </li>
           <li class="sidebar-list-item">
-            <a href="./admin-sales.html" target="_self">
+            <a href="{{ url_for('admin_sales') }}">
               <span class="material-icons-outlined">category</span> Sales
             </a>
             <ul class="nav-content collapse">
               <li>
-                <a href="admin-sales.html#continuing">
-                  <span class="material-icons-outlined">chevron_right</span
-                  ><span>Pending</span>
+                <a href="{{ url_for('admin_sales', status='pending') }}">
+                  <span class="material-icons-outlined"></span>
+                  <span>Pending</span>
                 </a>
               </li>
               <li>
-                <a href="admin-sales.html#completed">
-                  <span class="material-icons-outlined">chevron_right</span
-                  ><span>Completed</span>
+                <a href="{{ url_for('admin_sales', status='completed') }}">
+                  <span class="material-icons-outlined"></span>
+                  <span>Completed</span>
                 </a>
               </li>
               <li>
-                <a href="admin-sales.html#rejected">
-                  <span class="material-icons-outlined">chevron_right</span
-                  ><span>Rejected</span>
+                <a href="{{ url_for('admin_sales', status='rejected') }}">
+                  <span class="material-icons-outlined"></span>
+                  <span>Rejected</span>
                 </a>
               </li>
             </ul>
@@ -162,6 +165,6 @@
     </div>
 
     <!-- Custom JS -->
-    <script src="main.js"></script>
+    <script src="../static/scripts/main.js"></script>
   </body>
 </html>
