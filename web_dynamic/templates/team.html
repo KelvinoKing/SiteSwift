@@ -15,7 +15,7 @@
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="main.css" />
+    <link rel="stylesheet" href="../static/styles/main.css" />
   </head>
   <body>
     <!-- Header -->
@@ -58,19 +58,25 @@
                 <div class="main-menu" id="main-menu">
                   <nav class="navigation">
                     <ul class="nav menu" id="menu">
-                      <li class="active">
-                        <a href="#"
+                      <li
+                        class="{% if active_page == 'index' %}active{% endif %}"
+                      >
+                        <a href="{{ url_for('index') }}"
                           >Home <i class="icofont-rounded-down"></i
                         ></a>
                       </li>
-                      <li><a href="./about.html">About </a></li>
+                      <li><a href="{{ url_for('about') }}">About</a></li>
                       <li>
-                        <a href="./services.html"
-                          >Services <i class="icofont-rounded-down"></i>
-                        </a>
+                        <a href="{{ url_for('services') }}"
+                          >Services <i class="icofont-rounded-down"></i
+                        ></a>
                         <ul class="dropdown">
-                          <li><a href="404.html">404 Error</a></li>
-                          <li><a href="404.html">404 Error</a></li>
+                          <li>
+                            <a href="{{ url_for('services') }}"
+                              >Hosting Plans</a
+                            >
+                          </li>
+                          <!-- <li><a href="404.html">404 Error</a></li> -->
                         </ul>
                       </li>
                       <li>
@@ -78,7 +84,7 @@
                           >Pages <i class="icofont-rounded-down"></i
                         ></a>
                         <ul class="dropdown">
-                          <li><a href="./team.html">The team</a></li>
+                          <li><a href="{{ url_for('team') }}">The team</a></li>
                         </ul>
                       </li>
                       <li>
@@ -97,7 +103,9 @@
               </div>
               <div class="col-lg-2 col-12 p-2">
                 <div class="get-quote btn-primary">
-                  <a href="./signup.html" class="btn">Get Started</a>
+                  <a href="{{ url_for('register') }}" class="btn"
+                    >Get Started</a
+                  >
                 </div>
               </div>
             </div>
@@ -108,6 +116,7 @@
     </header>
 
     <!-- Team -->
+    <hr />
     <div class="container-fluid team py-5">
       <div class="container py-5">
         <div class="text-center mx-auto mb-5" style="max-width: 800px">
@@ -119,7 +128,7 @@
             <div class="team-item">
               <div class="team-img rounded-top">
                 <img
-                  src="images/man.jpg"
+                  src="../static/images/man.jpg"
                   class="img-fluid w-100 rounded-top bg-light"
                   alt=""
                 />
@@ -156,7 +165,7 @@
             <div class="team-item">
               <div class="team-img rounded-top">
                 <img
-                  src="images/man.jpg"
+                  src="../static/images/man.jpg"
                   class="img-fluid w-100 rounded-top bg-light"
                   alt=""
                 />
@@ -193,7 +202,7 @@
             <div class="team-item">
               <div class="team-img rounded-top">
                 <img
-                  src="images/man.jpg"
+                  src="../static/images/man.jpg"
                   class="img-fluid w-100 rounded-top bg-light"
                   alt=""
                 />
@@ -230,7 +239,7 @@
             <div class="team-item">
               <div class="team-img rounded-top">
                 <img
-                  src="images/man.jpg"
+                  src="../static/images/man.jpg"
                   class="img-fluid w-100 rounded-top bg-light"
                   alt=""
                 />
