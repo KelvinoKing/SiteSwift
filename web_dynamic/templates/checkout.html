@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout Page</title>
+    <link rel="stylesheet" href="../static/styles/main.css" />
+  </head>
+  <body>
+    <div class="section">
+      <div class="checkout-wrap wrapper">
+        <div class="checkout-container wrapper">
+          <h1>SiteSwift Checkout</h1>
+          <form id="checkout-form">
+            <div class="payment-method">
+              <h2>Payment Method</h2>
+              <label>
+                <input type="radio" name="payment" value="card" checked />
+                Credit/Debit Card
+              </label>
+              <label>
+                <input type="radio" name="payment" value="mobile" />
+                Mobile Money
+              </label>
+            </div>
+
+            <div id="card-info" class="payment-info">
+              <h3>Card Information</h3>
+              <label for="card-number">Card Number</label>
+              <input
+                type="text"
+                id="card-number"
+                name="card-number"
+                placeholder="1234 5678 9012 3456"
+                required
+              />
+
+              <label for="expiry-date">Expiry Date</label>
+              <input
+                type="text"
+                id="expiry-date"
+                name="expiry-date"
+                placeholder="MM/YY"
+                required
+              />
+
+              <label for="svg">CVV</label>
+              <input
+                type="text"
+                id="cvv"
+                name="cvv"
+                placeholder="123"
+                required
+              />
+            </div>
+
+            <div id="mobile-info" class="payment-info" style="display: none">
+              <h3>Mobile Money Information</h3>
+              <label for="mobile-number">Mobile Number</label>
+              <input
+                type="text"
+                id="mobile-number"
+                name="mobile-number"
+                placeholder="+123 456 7890"
+                required
+              />
+
+              <label for="provider">Provider</label>
+              <select id="provider" name="provider" required>
+                <option value="provider1">Safaricom</option>
+                <option value="provider2">Airtel</option>
+                <option value="provider3">Telkom</option>
+              </select>
+            </div>
+
+            <button type="submit">Pay Now</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const paymentRadios = document.querySelectorAll('input[name="payment"]');
+      const cardInfo = document.getElementById("card-info");
+      const mobileInfo = document.getElementById("mobile-info");
+
+      paymentRadios.forEach((radio) => {
+        radio.addEventListener("change", () => {
+          if (radio.value === "card") {
+            cardInfo.style.display = "block";
+            mobileInfo.style.display = "none";
+          } else {
+            cardInfo.style.display = "none";
+            mobileInfo.style.display = "block";
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1419,3 +1419,102 @@ a.list-group-item,
   background-color: #fff;
   border: 1px solid rgba(0, 0, 0, 0.125);
 }
+
+/* Checkout */
+.section_checkout {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f9fa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.checkout-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+}
+
+.checkout-container {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+h1 {
+  margin-bottom: 20px;
+  font-size: 26px;
+  color: #333;
+  text-align: center;
+}
+
+.payment-method,
+.payment-info {
+  margin-bottom: 20px;
+}
+
+.payment-method h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.payment-method label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #333;
+  cursor: pointer;
+}
+
+.payment-method input {
+  margin-right: 10px;
+}
+
+.payment-info h3 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  color: #555;
+}
+
+.payment-info label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #555;
+}
+
+.payment-info input,
+.payment-info select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 14px;
+  color: #333;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
