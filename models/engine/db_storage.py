@@ -46,12 +46,26 @@ class DBStorage:
         SITESWIFT_MYSQL_PWD = os.getenv('SITESWIFT_MYSQL_PWD')
         SITESWIFT_MYSQL_DB = os.getenv('SITESWIFT_MYSQL_DB')
         SITESWIFT_ENV = os.getenv('SITESWIFT_ENV')
-
+        SITESWIFT_MYSQL_PORT = os.getenv('SITESWIFT_MYSQL_PORT')
         
-        self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}'.
+        print(f"User: {SITESWIFT_MYSQL_USER}")
+        print(f"Host: {SITESWIFT_MYSQL_HOST}")
+        print(f"Password: {SITESWIFT_MYSQL_PWD}")
+        print(f"Database: {SITESWIFT_MYSQL_DB}")
+        print(f"Port: {SITESWIFT_MYSQL_PORT}")
+        
+        # self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}'.
+        #                               format(SITESWIFT_MYSQL_USER,
+        #                                      SITESWIFT_MYSQL_PWD,
+        #                                      SITESWIFT_MYSQL_HOST,
+        #                                      SITESWIFT_MYSQL_DB))
+        
+        # self.__engine = create_engine(f'mysql+mysqlconnector://{SITESWIFT_MYSQL_USER}:{SITESWIFT_MYSQL_PWD}@{SITESWIFT_MYSQL_HOST}/{SITESWIFT_MYSQL_DB}')
+        self.__engine = create_engine('mysql+mysqldb://{}:{}@{}:{}/{}'.
                                       format(SITESWIFT_MYSQL_USER,
                                              SITESWIFT_MYSQL_PWD,
                                              SITESWIFT_MYSQL_HOST,
+                                             SITESWIFT_MYSQL_PORT,
                                              SITESWIFT_MYSQL_DB))
         
         if SITESWIFT_ENV == 'test':
