@@ -56,6 +56,7 @@ class DBStorage:
         if SITESWIFT_ENV == 'test':
             Base.metadata.drop_all(self.__engine)
 
+
     @property
     def _session(self) -> Session:
         """Memoized session object
