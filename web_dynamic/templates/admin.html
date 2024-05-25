@@ -60,36 +60,36 @@
 
         <ul class="sidebar-list">
           <li class="sidebar-list-item">
-            <a href="./admin-dashboard.html">
+            <a href="{{ url_for('admin_dashboard') }}">
               <span class="material-icons-outlined">dashboard</span> Dashboard
             </a>
           </li>
           <li class="sidebar-list-item">
-            <a href="./admin-customers.html">
+            <a href="{{ url_for('admin_customers') }}">
               <span class="material-icons-outlined">inventory_2</span> Customers
             </a>
           </li>
           <li class="sidebar-list-item">
-            <a href="./admin-sales.html">
+            <a href="{{ url_for('admin_sales') }}">
               <span class="material-icons-outlined">category</span> Sales
             </a>
             <ul class="nav-content collapse">
               <li>
-                <a href="admin-sales#pending">
-                  <span class="material-icons-outlined"></span
-                  ><span>Pending</span>
+                <a href="{{ url_for('admin_sales', status='pending') }}">
+                  <span class="material-icons-outlined"></span>
+                  <span>Pending</span>
                 </a>
               </li>
               <li>
-                <a href="admin-sales#completed">
-                  <span class="material-icons-outlined"></span
-                  ><span>Completed</span>
+                <a href="{{ url_for('admin_sales', status='completed') }}">
+                  <span class="material-icons-outlined"></span>
+                  <span>Completed</span>
                 </a>
               </li>
               <li>
-                <a href="admin-sales#rejected">
-                  <span class="material-icons-outlined"></span
-                  ><span>Rejected</span>
+                <a href="{{ url_for('admin_sales', status='rejected') }}">
+                  <span class="material-icons-outlined"></span>
+                  <span>Rejected</span>
                 </a>
               </li>
             </ul>

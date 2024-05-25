@@ -45,7 +45,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/icofont/1.0.1/css/icofont.min.css"
     />
-    <link rel="stylesheet" href="main.css" />
+    <link rel="stylesheet" href="../static/styles/main.css" />
   </head>
   <body>
     <header class="header">
@@ -87,16 +87,18 @@
                 <div class="main-menu" id="main-menu">
                   <nav class="navigation">
                     <ul class="nav menu" id="menu">
-                      <li class="active">
-                        <a href="./index.html"
+                      <li
+                        class="{% if active_page == 'index' %}active{% endif %}"
+                      >
+                        <a href="{{ url_for('index') }}"
                           >Home <i class="icofont-rounded-down"></i
                         ></a>
                       </li>
-                      <li><a href="./about.html">About </a></li>
+                      <li><a href="{{ url_for('about') }}">About</a></li>
                       <li>
-                        <a href="./services.html"
-                          >Services <i class="icofont-rounded-down"></i>
-                        </a>
+                        <a href="{{ url_for('services') }}"
+                          >Services <i class="icofont-rounded-down"></i
+                        ></a>
                         <ul class="dropdown">
                           <li><a href="404.html">404 Error</a></li>
                           <li><a href="404.html">404 Error</a></li>
@@ -107,7 +109,7 @@
                           >Pages <i class="icofont-rounded-down"></i
                         ></a>
                         <ul class="dropdown">
-                          <li><a href="./team.html">The team</a></li>
+                          <li><a href="{{ url_for('team') }}">The team</a></li>
                         </ul>
                       </li>
                       <li>
@@ -126,13 +128,16 @@
               </div>
               <div class="col-lg-2 col-12 p-2">
                 <div class="get-quote btn-primary">
-                  <a href="./signup.html" class="btn">Get Started</a>
+                  <a href="{{ url_for('register') }}" class="btn"
+                    >Get Started</a
+                  >
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+
       <!--/ End Header Inner -->
     </header>
 
@@ -142,7 +147,7 @@
         <!-- Start Single Slider -->
         <div
           class="single-slider"
-          style="background-image: url('./images/img_2.jpg')"
+          style="background-image: url('./static/images/img_5.jpg')"
         >
           <div class="container">
             <div class="row">
@@ -167,7 +172,7 @@
         <!-- Start Single Slider -->
         <div
           class="single-slider"
-          style="background-image: url('./images/img_3.jpg')"
+          style="background-image: url('./static/images/img_3.jpg')"
         >
           <div class="container">
             <div class="row">
@@ -193,7 +198,7 @@
 
         <div
           class="single-slider"
-          style="background-image: url('./images/img_5.jpg')"
+          style="background-image: url('./static/images/img_5.jpg')"
         >
           <div class="container">
             <div class="row">
@@ -314,7 +319,7 @@
             <img
               class="img-fluid wow zoomIn"
               data-wow-delay="0.5s"
-              src="images/about.png"
+              src="../static/images/about.png"
             />
           </div>
         </div>
@@ -645,7 +650,7 @@
             <div class="team-item">
               <div class="team-img rounded-top">
                 <img
-                  src="images/man.jpg"
+                  src="../static/images/man.jpg"
                   class="img-fluid w-100 rounded-top bg-light"
                   alt=""
                 />
@@ -682,7 +687,7 @@
             <div class="team-item">
               <div class="team-img rounded-top">
                 <img
-                  src="images/man.jpg"
+                  src="./static/images/man.jpg"
                   class="img-fluid w-100 rounded-top bg-light"
                   alt=""
                 />
@@ -719,7 +724,7 @@
             <div class="team-item">
               <div class="team-img rounded-top">
                 <img
-                  src="images/man.jpg"
+                  src="./static/images/man.jpg"
                   class="img-fluid w-100 rounded-top bg-light"
                   alt=""
                 />
@@ -756,7 +761,7 @@
             <div class="team-item">
               <div class="team-img rounded-top">
                 <img
-                  src="images/man.jpg"
+                  src="../static/images/man.jpg"
                   class="img-fluid w-100 rounded-top bg-light"
                   alt=""
                 />
@@ -923,6 +928,6 @@
     <script src="lib/lightbox/js/lightbox.min.js"></script>
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
 
-    <script src="main.js"></script>
+    <script src="../static/scripts/main.js"></script>
   </body>
 </html>

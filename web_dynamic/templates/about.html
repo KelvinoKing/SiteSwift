@@ -41,7 +41,7 @@
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
-    <link rel="stylesheet" href="main.css" />
+    <link rel="stylesheet" href="../static/styles/main.css" />
   </head>
   <body>
     <header class="header">
@@ -82,16 +82,18 @@
                 <div class="main-menu" id="main-menu">
                   <nav class="navigation">
                     <ul class="nav menu" id="menu">
-                      <li>
-                        <a href="./index.html"
+                      <li
+                        class="{% if active_page == 'index' %}active{% endif %}"
+                      >
+                        <a href="{{ url_for('index') }}"
                           >Home <i class="icofont-rounded-down"></i
                         ></a>
                       </li>
-                      <li class="active"><a href="./about.html">About </a></li>
+                      <li><a href="{{ url_for('about') }}">About</a></li>
                       <li>
-                        <a href="./services.html"
-                          >Services <i class="icofont-rounded-down"></i>
-                        </a>
+                        <a href="{{ url_for('services') }}"
+                          >Services <i class="icofont-rounded-down"></i
+                        ></a>
                         <ul class="dropdown">
                           <li><a href="404.html">404 Error</a></li>
                           <li><a href="404.html">404 Error</a></li>
@@ -102,7 +104,7 @@
                           >Pages <i class="icofont-rounded-down"></i
                         ></a>
                         <ul class="dropdown">
-                          <li><a href="./team.html">The team</a></li>
+                          <li><a href="{{ url_for('team') }}">The team</a></li>
                         </ul>
                       </li>
                       <li>
@@ -121,13 +123,16 @@
               </div>
               <div class="col-lg-2 col-12 p-2">
                 <div class="get-quote btn-primary">
-                  <a href="./signup.html" class="btn">Get Started</a>
+                  <a href="{{ url_for('register') }}" class="btn"
+                    >Get Started</a
+                  >
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+
       <!--/ End Header Inner -->
     </header>
 
@@ -232,7 +237,7 @@
             <img
               class="img-fluid wow zoomIn"
               data-wow-delay="0.5s"
-              src="images/about.png"
+              src="../static/images/about.png"
             />
           </div>
         </div>
@@ -666,6 +671,6 @@
       ><i class="bi bi-arrow-up"></i
     ></a> -->
 
-    <script src="main.js"></script>
+    <script src="../static/scripts/main.js"></script>
   </body>
 </html>

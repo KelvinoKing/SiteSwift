@@ -15,7 +15,7 @@ li {
 
 .header {
   grid-area: header;
-  background: #4caf50;
+  background: #0d6efd;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -80,7 +80,7 @@ li {
 }
 
 .sidebar-list-item a:hover {
-  color: #4caf50;
+  color: #0d6efd;
 }
 
 .sidebar-list-item span {
@@ -136,7 +136,7 @@ li {
 
 .card-inner span {
   font-size: 2em;
-  color: #4caf50;
+  color: #0d6efd;
 }
 
 .card h1 {
@@ -179,7 +179,7 @@ table {
 }
 
 table thead tr {
-  background-color: #009879;
+  background-color: #0d6efd;
   color: #ffffff;
   text-align: left;
 }
@@ -198,12 +198,12 @@ table tbody tr:nth-of-type(even) {
 }
 
 table tbody tr:last-of-type {
-  border-bottom: 2px solid #009879;
+  border-bottom: 2px solid #0d6efd;
 }
 
 table tbody tr.active-row {
   font-weight: bold;
-  color: #009879;
+  color: #0d6efd;
 }
 
 /* Responsive adjustments */

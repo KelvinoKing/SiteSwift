@@ -9,6 +9,7 @@ from flask import request
 from sqlalchemy.orm.exc import NoResultFound
 from typing import List, Dict, Union, Any, Tuple
 from flask import flash
+import uuid
 
 
 load_dotenv()
@@ -23,7 +24,9 @@ app.config.update(SESSION_COOKIE_MAX_AGE=60)
 def index() -> str:
     """ GET /
     """
-    return render_template('index.html')
+    cache_id=str(uuid.uuid4())
+    
+    return render_template('index.html', cache_id=cache_id)
 
 
 @app.route("/register", methods=['GET'], strict_slashes=False)
@@ -294,4 +297,4 @@ if __name__ == "__main__":
     if not port:
         port = '5001'
     
-    app.run(host=host, port=port, debug=False)
+    app.run(host=host, port=port, debug=True)
