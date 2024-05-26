@@ -9,7 +9,6 @@ from models.invoice import Invoice
 from models.order import Order
 from models.payment import Payment
 from models.profile import Profile
-from models.service import Service
 from models.user import User
 from models.admin import Admin
 import shlex
@@ -23,7 +22,6 @@ class BookSwapCommand(cmd.Cmd):
         'User': User,
         'Admin': Admin,
         'Profile': Profile,
-        'Service': Service,
         'HostingPlan': HostingPlan,
         'BillingCycle': BillingCycle,
         'Order': Order,

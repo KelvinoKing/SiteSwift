@@ -7,7 +7,6 @@ from models.invoice import Invoice
 from models.order import Order
 from models.payment import Payment
 from models.profile import Profile
-from models.service import Service
 from models.user import User
 import os
 from dotenv import load_dotenv
@@ -24,7 +23,6 @@ classes = {
     'User': User,
     'Admin': Admin,
     'Profile': Profile,
-    'Service': Service,
     'HostingPlan': HostingPlan,
     'BillingCycle': BillingCycle,
     'Order': Order,
