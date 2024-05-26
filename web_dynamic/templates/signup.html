@@ -15,20 +15,17 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="../static/styles/main.css" />
+    <link rel="stylesheet" href="../static/styles/admin.css">
   </head>
   <body>
     <div class="flash_container">
-      {% with messages = get_flashed_messages() %} {% if messages %}
-      <div class="flashes">
-        {% for message, category in messages %}
-        <div
-          class="flash-message {% if category == 'error' %}error{% elif category == 'success' %}success{% elif category == 'warning' %}warning{% elif category == 'info' %}info{% endif %}"
-        >
-          {{ message }}
+      {% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">
+            {{ message }}
         </div>
-        {% endfor %}
-      </div>
-      {% endif %} {% endwith %}
+    {% endfor %}
+    {% endwith %}
     </div>
 
     <!-- Navbar Start -->

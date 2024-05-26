@@ -1,5 +1,6 @@
 file.json
 __pycache__/
 .env
-models/engine/db_storage.py
+models/engine/
+.vscode/
 
