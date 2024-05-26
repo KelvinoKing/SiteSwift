@@ -1534,47 +1534,53 @@ button:hover {
   width: 100%;
 }
 
-.flash-message {
+.alert {
   padding: 10px;
   border-radius: 5px;
   background-color: #3498db;
   color: #fff;
   text-align: center;
   width: 50%;
-  margin: 0 auto;
+  margin: 0 auto 20px auto;
+  /* border: 2px solid blue; */
 }
 
-.flash-message.success {
+.alert-success {
   background-color: #dff0d8;
   color: #3c763d;
   border: 1px solid #d6e9c6;
 }
 
-.flash-message.error {
+.alert-error,
+.alert-danger {
   background-color: #f2dede;
   color: #a94442;
   border: 1px solid #ebccd1;
 }
 
-.flash-message.warning {
+.alert-warning {
   background-color: #fcf8e3;
   color: #8a6d3b;
   border: 1px solid #faebcc;
 }
 
-.flash-message.info {
+.alert-info {
   background-color: #d9edf7;
   color: #31708f;
   border: 1px solid #bce8f1;
 }
+
 .success {
-  background-color: #4caf50; /* Green color */
+  background-color: #4caf50;
+  color: #fff;
 }
 
 .error {
-  background-color: #f44336; /* Red color */
+  background-color: #f44336;
+  color: #fff;
 }
 
 .warning {
-  background-color: #ff9800; /* Orange color */
+  background-color: #ff9800;
+  color: #fff;
 }
