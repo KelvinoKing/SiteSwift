@@ -2,5 +2,5 @@ file.json
 __pycache__/
 .env
 models/engine/
-.vscode/
+vscode/
 
