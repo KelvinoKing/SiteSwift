@@ -111,7 +111,9 @@ def account() -> str:
     session_id = request.cookies.get('session_id')
     user = Auth.get_user_from_session_id(session_id)
     if not user:
+        flash('Please login to continue.')
         return redirect('/register')
+    flash('Welcome back, {}'.format(user.first_name))
     return render_template('myaccount.html', user=user)
 
 
@@ -124,6 +126,7 @@ def profile() -> str:
     if not user:
         flash('Please login to continue.')
         return redirect('/register')
+    flash('Welcome back, {}'.format(user.first_name))
     return render_template('profile.html', user=user)
 
 
@@ -250,7 +253,9 @@ def admin_account() -> str:
     session_id = request.cookies.get('session_id')
     user = Auth.get_admin_from_session_id(session_id)
     if not user:
+        flash('Please login to continue.')
         return redirect('/admin')
+    flash('Welcome back, {}'.format(user.first_name))
     return render_template('admin.html', user=user)
 
 
@@ -297,4 +302,4 @@ if __name__ == "__main__":
     if not port:
         port = '5001'
     
-    app.run(host=host, port=port, debug=True)
+    app.run(host=host, port=port, debug=False)

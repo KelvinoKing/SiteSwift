@@ -12,7 +12,6 @@ $(document).ready(function() {
 
     // Check if passwords match
     if (password !== repeatPassword) {
-      alert("Passwords do not match");
       return;
     }
 
@@ -34,7 +33,6 @@ $(document).ready(function() {
         withCredentials: true  // Include credentials
     },
       success: function(response) {
-        alert("User created successfully. You can now signin");
         window.location.href = "register";
       },
       error: function(xhr, status, error) {
@@ -73,7 +71,6 @@ $(document).ready(function() {
         withCredentials: true  // Include credentials
     },
       success: function(response) {
-        alert("Login successful");
         // You can redirect or perform additional actions after successful login
         // Redirect to the dashboard after successful login
         window.location.href = "account";
@@ -114,7 +111,6 @@ $(document).ready(function() {
         withCredentials: true  // Include credentials
     },
       success: function(response) {
-        alert("Login successful");
         // You can redirect or perform additional actions after successful login
         // Redirect to the dashboard after successful login
         window.location.href = "admin/account";
