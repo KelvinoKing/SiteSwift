@@ -17,18 +17,20 @@
     <link rel="stylesheet" href="../static/styles/main.css" />
   </head>
   <body>
+    <div class="flash_container">
+      {% with messages = get_flashed_messages() %} {% if messages %}
+      <div class="flashes">
+        {% for message, category in messages %}
+        <div
+          class="flash-message {% if category == 'error' %}error{% elif category == 'success' %}success{% elif category == 'warning' %}warning{% elif category == 'info' %}info{% endif %}"
+        >
+          {{ message }}
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %} {% endwith %}
+    </div>
 
-    <div class="container">
-      {% with messages = get_flashed_messages() %}
-          {% if messages %}
-              <div class="flashes">
-                  {% for message in messages %}
-                      <div class="flash-message">{{ message }}</div>
-                  {% endfor %}
-              </div>
-          {% endif %}
-      {% endwith %}
-  </div>
     <!-- Navbar Start -->
 
     <section class="section">
