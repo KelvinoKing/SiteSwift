@@ -114,6 +114,16 @@
       crossorigin="anonymous"
     ></script>
 
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var duration = 5000; // 5000 milliseconds = 5 seconds
+        var flashMessage = document.getElementById("flash-message");
+        setTimeout(function () {
+          flashMessage.classList.add("hide");
+        }, duration);
+      });
+    </script>
+
     <!-- Template Javascript -->
     <script src="../static/scripts/main.js"></script>
     <script src="../static/scripts/signup.js"></script>
