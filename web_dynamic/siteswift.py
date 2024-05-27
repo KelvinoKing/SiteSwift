@@ -27,7 +27,6 @@ def index() -> str:
     """
     url = "http://localhost:5000/api/v1/hosting_plans"
     hosting_plan = requests.get(url).json()
-    print(hosting_plan)
 
     cache_id=str(uuid.uuid4())
     
@@ -204,7 +203,6 @@ def services() -> str:
 
     url = "http://localhost:5000/api/v1/hosting_plans"
     hosting_plan = requests.get(url).json()
-    print(hosting_plan)
 
     cache_id=str(uuid.uuid4())
     
