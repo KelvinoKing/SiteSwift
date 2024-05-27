@@ -163,8 +163,12 @@
                   </h1>
                   <p>Give us the honour of hosting your website</p>
                   <div class="button">
-                    <a href="./services.html" class="btn">What we offer</a>
-                    <a href="./about.html" class="btn primary">Learn More</a>
+                    <a href="{{ url_for('services') }}" class="btn"
+                      >What we offer</a
+                    >
+                    <a href="{{ url_for('about') }}" class="btn primary"
+                      >Learn More</a
+                    >
                   </div>
                 </div>
               </div>
@@ -188,8 +192,12 @@
                   </h1>
                   <p>Give us the honour of hosting your website</p>
                   <div class="button">
-                    <a href="./services.html" class="btn">What we offer</a>
-                    <a href="./about.html" class="btn primary">Learn More</a>
+                    <a href="{{ url_for('services') }}" class="btn"
+                      >What we offer</a
+                    >
+                    <a href="{{ url_for('about') }}" class="btn primary"
+                      >Learn More</a
+                    >
                   </div>
                 </div>
               </div>
@@ -214,8 +222,12 @@
                   </h1>
                   <p>Give us the honour of hosting your website</p>
                   <div class="button">
-                    <a href="./services.html" class="btn">What we offer</a>
-                    <a href="./about.html" class="btn primary">Learn More</a>
+                    <a href="{{ url_for('services') }}" class="btn"
+                      >What we offer</a
+                    >
+                    <a href="{{ url_for('about') }}" class="btn primary"
+                      >Learn More</a
+                    >
                   </div>
                 </div>
               </div>
@@ -394,7 +406,7 @@
 
     <!-- Pricing Start -->
     <div class="container-xxl py-5">
-      <div class="container px-lg-5">
+      <div class="container-hosting px-lg-5">
         <div
           class="section-title position-relative text-center mx-auto mb-5 pb-4 wow fadeInUp"
           data-wow-delay="0.1s"
@@ -402,8 +414,9 @@
         >
           <h1 class="mb-3">Our Hosting Plans</h1>
           <p class="mb-1">
-            SiteSwift offers very affordable packages. No matter your budget, we
-            have something for you
+            Vero justo sed sed vero clita amet. Et justo vero sea diam elitr
+            amet ipsum eos ipsum clita duo sed. Sed vero sea diam erat vero
+            elitr sit clita.
           </p>
         </div>
         <div class="row gy-5 gx-3">
@@ -479,29 +492,30 @@
             </div>
           </div>
           {% endfor %}
-    <!-- Pricing End -->
-
     <!-- Testimonials -->
 
-    <!-- Our Teqam -->
+    <!-- Our Team -->
     <div class="container-fluid team py-5">
       <div class="container py-5">
         <div class="text-center mx-auto mb-5" style="max-width: 800px">
-          <!-- <p class="fs-4 text-uppercase text-primary">SiteSwift Team</p> -->
-          <h1 class="display-4 mb-4">Our specialists</h1>
+          <h1 class="mb-3">Our Core Lead Team</h1>
+          <p class="mb-1">
+            Siteswift prides itself of having a team of very tech-savvy
+            individuals
+          </p>
         </div>
-        <div class="row g-4">
-          <div class="col-md-6 col-lg-6 col-xl-3">
+        <div class="row g-6">
+          <!-- <div class="col-md-6 col-lg-6 col-xl-3">
             <div class="team-item">
               <div class="team-img rounded-top">
                 <img
-                  src="../static/images/man.jpg"
+                  src="./static/images/man.jpg"
                   class="img-fluid w-100 rounded-top bg-light"
                   alt=""
                 />
               </div>
               <div class="team-text rounded-bottom text-center p-4">
-                <h3 class="text-white">Oliva Mia</h3>
+                <h3 class="text-white">Kelvin Gachihi</h3>
                 <p class="mb-0 text-white">Developer</p>
               </div>
               <div class="team-social">
@@ -527,19 +541,19 @@
                 ></a>
               </div>
             </div>
-          </div>
-          <div class="col-md-6 col-lg-6 col-xl-3">
+          </div> -->
+          <div class="col-md-4 col-lg-4 col-xl-3">
             <div class="team-item">
               <div class="team-img rounded-top">
                 <img
-                  src="./static/images/man.jpg"
+                  src="../static/images/man.jpg"
                   class="img-fluid w-100 rounded-top bg-light"
                   alt=""
                 />
               </div>
               <div class="team-text rounded-bottom text-center p-4">
                 <h3 class="text-white">Joan Waithira</h3>
-                <p class="mb-0 text-white">Team Lead</p>
+                <p class="mb-0 text-white">Developer</p>
               </div>
               <div class="team-social">
                 <a
@@ -554,7 +568,7 @@
                 ></a>
                 <a
                   class="btn btn-light btn-light-outline-0 btn-square rounded-circle mb-2"
-                  href="https://www.linkedin.com"
+                  href="#"
                   ><i class="fab fa-linkedin-in"></i
                 ></a>
                 <a
@@ -565,7 +579,7 @@
               </div>
             </div>
           </div>
-          <div class="col-md-6 col-lg-6 col-xl-3">
+          <div class="col-md-4 col-lg-6 col-xl-3">
             <div class="team-item">
               <div class="team-img rounded-top">
                 <img
@@ -575,7 +589,7 @@
                 />
               </div>
               <div class="team-text rounded-bottom text-center p-4">
-                <h3 class="text-white">Steve Lovy</h3>
+                <h3 class="text-white">Kelvin Gachihi</h3>
                 <p class="mb-0 text-white">Developer</p>
               </div>
               <div class="team-social">
@@ -602,17 +616,17 @@
               </div>
             </div>
           </div>
-          <div class="col-md-6 col-lg-6 col-xl-3">
+          <!-- <div class="col-md-6 col-lg-6 col-xl-3">
             <div class="team-item">
               <div class="team-img rounded-top">
                 <img
-                  src="../static/images/man.jpg"
+                  src="./static/images/man.jpg"
                   class="img-fluid w-100 rounded-top bg-light"
                   alt=""
                 />
               </div>
               <div class="team-text rounded-bottom text-center p-4">
-                <h3 class="text-white">Maxwell Livid</h3>
+                <h3 class="text-white">Kelvin Gachihi</h3>
                 <p class="mb-0 text-white">Developer</p>
               </div>
               <div class="team-social">
@@ -628,7 +642,7 @@
                 ></a>
                 <a
                   class="btn btn-light btn-light-outline-0 btn-square rounded-circle mb-2"
-                  href="#"
+                  href="https://www.linkedin.com"
                   ><i class="fab fa-linkedin-in"></i
                 ></a>
                 <a
@@ -638,7 +652,7 @@
                 ></a>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -648,24 +662,22 @@
       class="container-fluid bg-primary text-white footer mt-0 pt-5 wow fadeIn"
       data-wow-delay="0.1s"
     >
-      <div class="container py-5 px-lg-5">
+      <div class="container-footer py-5 px-lg-5">
         <div class="row gy-5 gx-4 pt-5">
           <div class="col-12">
             <h5 class="fw-bold text-white mb-4">Subscribe Our Newsletter</h5>
-            <div class="position-relative" style="max-width: 400px">
+            <div class="d-flex" style="max-width: 400px">
               <input
-                class="form-control bg-white border-0 w-100 py-3 ps-4 pe-5"
+                class="form-control bg-white border-0 w-100 py-3 ps-4"
                 type="text"
                 placeholder="Enter your email"
               />
-              <button
-                type="button"
-                class="btn btn-primary py-2 px-3 position-absolute top-0 end-0 mt-2 me-2"
-              >
+              <button type="button" class="btn btn-warning py-2 px-3 ms-2">
                 Submit
               </button>
             </div>
           </div>
+
           <div class="col-lg-5 col-md-12">
             <div class="row gy-5 g-4">
               <div class="col-md-6">
@@ -739,7 +751,9 @@
           <div class="row">
             <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
               &copy; <a href="#">SiteSwift</a>, All Right Reserved. Designed By
-              <a class="border-bottom" href="https://htmlcodex.com"
+              <a
+                class="border-bottom"
+                href="https://www.linkedin.com/in/joan-waithira/"
                 >JoanWaithira</a
               >
             </div>
