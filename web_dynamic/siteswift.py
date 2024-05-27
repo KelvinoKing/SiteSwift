@@ -305,7 +305,10 @@ def admin_account() -> str:
         flash('Please login to continue.')
         return redirect('/admin')
     flash('Welcome back, {}'.format(user.first_name))
-    return render_template('admin.html', user=user)
+    
+    url = "http://localhost:5000/api/v1/stats"
+    stats = requests.get(url).json()
+    return render_template('admin-dashboard.html', user=user, stats=stats)
 
 
 @app.route("/admin/account/dashboard", methods=['GET'], strict_slashes=False)
@@ -316,7 +319,10 @@ def admin_dashboard() -> str:
     user = Auth.get_admin_from_session_id(session_id)
     if not user:
         return redirect('/admin')
-    return render_template('admin-dashboard.html')
+    
+    url = "http://localhost:5000/api/v1/stats"
+    stats = requests.get(url).json()
+    return render_template('admin-dashboard.html', user=user, stats=stats)
 
 
 @app.route("/admin/account/customers", methods=['GET'], strict_slashes=False)
@@ -327,7 +333,10 @@ def admin_customers() -> str:
     user = Auth.get_admin_from_session_id(session_id)
     if not user:
         return redirect('/admin')
-    return render_template('admin-customers.html')
+    
+    url = "http://localhost:5000/api/v1/users"
+    users = requests.get(url).json()
+    return render_template('admin-customers.html', user=user, users=users)
 
 
 @app.route("/admin/account/sales", methods=['GET'], strict_slashes=False)
@@ -338,7 +347,13 @@ def admin_sales() -> str:
     user = Auth.get_admin_from_session_id(session_id)
     if not user:
         return redirect('/admin')
-    return render_template('admin-sales.html')
+    url = "http://localhost:5000/api/v1/orders"
+    orders = requests.get(url).json()
+    url2 = "http://localhost:5000/api/v1/hosting_plans"
+    hosting_plans = requests.get(url2).json()
+    url3 = "http://localhost:5000/api/v1/users"
+    users = requests.get(url3).json()
+    return render_template('admin-sales.html', user=user, orders=orders, hosting_plans=hosting_plans, users=users)
 
 
 

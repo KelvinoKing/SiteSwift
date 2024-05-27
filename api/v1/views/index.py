@@ -12,7 +12,6 @@ from models.invoice import Invoice
 from models.order import Order
 from models.payment import Payment
 from models.profile import Profile
-from models.service import Service
 
 
 @app_views.route("/status", strict_slashes=False)
@@ -34,6 +33,5 @@ def stats() -> str:
         "invoices": storage.count(Invoice),
         "orders": storage.count(Order),
         "payments": storage.count(Payment),
-        "profiles": storage.count(Profile),
-        "services": storage.count(Service)
+        "profiles": storage.count(Profile)
     })

@@ -9,7 +9,7 @@ from flask_cors import CORS
 
 app = Flask(__name__)
 app.register_blueprint(app_views)
-cors = CORS(app, resources={r"/api/v1/*": {"origins": "http://127.0.0.1:5001"}}, supports_credentials=True)
+cors = CORS(app, resources={r"/api/v1/*": {"origins": ["http://127.0.0.1:5001", "http://127.0.0.1:5000"]}}, supports_credentials=True)
 
 
 @app.teardown_appcontext

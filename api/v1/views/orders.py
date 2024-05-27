@@ -2,7 +2,7 @@
 """ Module for order view """
 
 from api.v1.views import app_views
-from flask import jsonify, abort, request
+from flask import jsonify, abort, request, make_response
 from models import storage
 from models.order import Order
 
@@ -53,16 +53,33 @@ def post_order():
         abort(400, 'Missing user_id')
     if 'hosting_plan_id' not in data:
         abort(400, 'Missing hosting_plan_id')
-    if 'billing_cycle_id' not in data:
-        abort(400, 'Missing billing_cycle_id')
     if 'amount' not in data:
         abort(400, 'Missing amount_due')
-    if 'order_date' not in data:
-        abort(400, 'Missing order_date')
-    if 'order_status' not in data:
+    if 'status' not in data:
         abort(400, 'Missing order_status')
     
     order = Order(**data)
     order.save()
     
     return jsonify(order.to_dict()), 201
+
+
+@app_views.route('/orders/<order_id>', methods=['PUT'], strict_slashes=False)
+def put_order(order_id):
+    """ Updates an order """
+    order = storage.get(Order, order_id)
+    if not order:
+        abort(404)
+            
+    data = request.get_json()
+    if not data:
+        abort(400, 'Not a JSON')
+            
+    for key, value in data.items():
+        if key == 'status':
+            setattr(order, key, value)
+                
+    order.save()
+
+    # Return a success response
+    return "Success", 200
