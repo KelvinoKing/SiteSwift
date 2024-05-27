@@ -156,6 +156,7 @@
           </p>
         </div>
         <div class="row gy-5 gx-3">
+          {% for plan in hosting_plan %}
           <div class="col-lg-3 col-md-3 wow fadeInUp" data-wow-delay="0.2s">
             <div
               class="position-relative shadow rounded border-top border-5 border-primary"
@@ -167,10 +168,9 @@
                 <i class="fa fa-share-alt text-white"></i>
               </div>
               <div class="text-center border-bottom p-4 pt-5">
-                <h4 class="fw-bold">Share Hosting</h4>
+                <h4 class="fw-bold">{{ plan.name }}</h4>
                 <p class="mb-0">
-                  Eirmod erat dolor amet est clita lorem erat justo rebum elitr
-                  eos
+                  {{ plan.description }}
                 </p>
               </div>
               <div class="text-center border-bottom p-4">
@@ -181,30 +181,43 @@
                   <small
                     class="align-top"
                     style="font-size: 22px; line-height: 45px"
-                    >$</small
-                  >2.49<small
+                    >Ksh</small
+                  >{{ plan.price }}<small
                     class="align-bottom"
                     style="font-size: 16px; line-height: 40px"
                     >/ Month</small
                   >
                 </h1>
-                <a class="btn btn-primary px-4 py-2" href="">Buy Now</a>
+                <a class="btn btn-primary px-4 py-2" href="{{ url_for('order', hosting_plan_id=plan.id) }}">Buy Now</a>
               </div>
               <div class="p-4">
                 <p class="border-bottom pb-3">
-                  <i class="fa fa-check text-primary me-3"></i>100 GB Disk Space
+                  <i class="fa fa-check text-primary me-3"></i>Host 
+                  {{ plan.max_websites }} Domain
                 </p>
                 <p class="border-bottom pb-3">
-                  <i class="fa fa-check text-primary me-3"></i>Unlimited
-                  Bandwith
+                  <i class="fa fa-check text-primary me-3"></i>{{ plan.max_space }}GB
+                  SSD Storage
                 </p>
                 <p class="border-bottom pb-3">
-                  <i class="fa fa-check text-primary me-3"></i>Upgrade to
-                  Positive SSL
+                  <i class="fa fa-check text-primary me-3"></i>{{ plan.max_bandwidth }}GB
+                  Bandwidth
                 </p>
                 <p class="border-bottom pb-3">
-                  <i class="fa fa-check text-primary me-3"></i>Automatic Malware
-                  Removal
+                  <i class="fa fa-check text-primary me-3"></i>
+                  {% if plan.max_email == 500 %}
+                  Unlimited Email Accounts
+                  {% else %}
+                  {{ plan.max_email }} Email Accounts
+                  {% endif %}
+                </p>
+                <p class="border-bottom pb-3">
+                  <i class="fa fa-check text-primary me-3"></i>
+                  {% if plan.max_databases == 500 %}
+                  Unlimited Databases
+                  {% else %}
+                  {{ plan.max_databases }} Databases
+                  {% endif %}
                 </p>
                 <p class="mb-0">
                   <i class="fa fa-check text-primary me-3"></i>30 Days Money
@@ -213,182 +226,8 @@
               </div>
             </div>
           </div>
-          <div class="col-lg-3 col-md-3 wow fadeInUp" data-wow-delay="0.4s">
-            <div
-              class="position-relative shadow rounded border-top border-5 border-secondary"
-            >
-              <div
-                class="d-flex align-items-center justify-content-center position-absolute top-0 start-50 translate-middle bg-secondary rounded-circle"
-                style="width: 45px; height: 45px; margin-top: -3px"
-              >
-                <i class="fa fa-server text-white"></i>
-              </div>
-              <div class="text-center border-bottom p-4 pt-5">
-                <h4 class="fw-bold">VPS Hosting</h4>
-                <p class="mb-0">
-                  Eirmod erat dolor amet est clita lorem erat justo rebum elitr
-                  eos
-                </p>
-              </div>
-              <div class="text-center border-bottom p-4">
-                <p class="text-primary mb-1">
-                  Latest Offer - <strong>Save 30%</strong>
-                </p>
-                <h1 class="mb-3">
-                  <small
-                    class="align-top"
-                    style="font-size: 22px; line-height: 45px"
-                    >$</small
-                  >5.49<small
-                    class="align-bottom"
-                    style="font-size: 16px; line-height: 40px"
-                    >/ Month</small
-                  >
-                </h1>
-                <a class="btn btn-secondary px-4 py-2" href="">Buy Now</a>
-              </div>
-              <div class="p-4">
-                <p class="border-bottom pb-3">
-                  <i class="fa fa-check text-primary me-3"></i>100 GB Disk Space
-                </p>
-                <p class="border-bottom pb-3">
-                  <i class="fa fa-check text-primary me-3"></i>Unlimited
-                  Bandwith
-                </p>
-                <p class="border-bottom pb-3">
-                  <i class="fa fa-check text-primary me-3"></i>Upgrade to
-                  Positive SSL
-                </p>
-                <p class="border-bottom pb-3">
-                  <i class="fa fa-check text-primary me-3"></i>Automatic Malware
-                  Removal
-                </p>
-                <p class="mb-0">
-                  <i class="fa fa-check text-primary me-3"></i>30 Days Money
-                  Back Guarantee
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-3 wow fadeInUp" data-wow-delay="0.6s">
-            <div
-              class="position-relative shadow rounded border-top border-5 border-primary"
-            >
-              <div
-                class="d-flex align-items-center justify-content-center position-absolute top-0 start-50 translate-middle bg-primary rounded-circle"
-                style="width: 45px; height: 45px; margin-top: -3px"
-              >
-                <i class="fa fa-cog text-white"></i>
-              </div>
-              <div class="text-center border-bottom p-4 pt-5">
-                <h4 class="fw-bold">Dedi Hosting</h4>
-                <p class="mb-0">
-                  Eirmod erat dolor amet est clita lorem erat justo rebum elitr
-                  eos
-                </p>
-              </div>
-              <div class="text-center border-bottom p-4">
-                <p class="text-primary mb-1">
-                  Latest Offer - <strong>Save 30%</strong>
-                </p>
-                <h1 class="mb-3">
-                  <small
-                    class="align-top"
-                    style="font-size: 22px; line-height: 45px"
-                    >$</small
-                  >11.49<small
-                    class="align-bottom"
-                    style="font-size: 16px; line-height: 40px"
-                    >/ Month</small
-                  >
-                </h1>
-                <a class="btn btn-primary px-4 py-2" href="">Buy Now</a>
-              </div>
-              <div class="p-4">
-                <p class="border-bottom pb-3">
-                  <i class="fa fa-check text-primary me-3"></i>100 GB Disk Space
-                </p>
-                <p class="border-bottom pb-3">
-                  <i class="fa fa-check text-primary me-3"></i>Unlimited
-                  Bandwith
-                </p>
-                <p class="border-bottom pb-3">
-                  <i class="fa fa-check text-primary me-3"></i>Upgrade to
-                  Positive SSL
-                </p>
-                <p class="border-bottom pb-3">
-                  <i class="fa fa-check text-primary me-3"></i>Automatic Malware
-                  Removal
-                </p>
-                <p class="mb-0">
-                  <i class="fa fa-check text-primary me-3"></i>30 Days Money
-                  Back Guarantee
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-3 wow fadeInUp" data-wow-delay="0.6s">
-            <div
-              class="position-relative shadow rounded border-top border-5 border-primary"
-            >
-              <div
-                class="d-flex align-items-center justify-content-center position-absolute top-0 start-50 translate-middle bg-primary rounded-circle"
-                style="width: 45px; height: 45px; margin-top: -3px"
-              >
-                <i class="fa fa-cog text-white"></i>
-              </div>
-              <div class="text-center border-bottom p-4 pt-5">
-                <h4 class="fw-bold">Dedi Hosting</h4>
-                <p class="mb-0">
-                  Eirmod erat dolor amet est clita lorem erat justo rebum elitr
-                  eos
-                </p>
-              </div>
-              <div class="text-center border-bottom p-4">
-                <p class="text-primary mb-1">
-                  Latest Offer - <strong>Save 30%</strong>
-                </p>
-                <h1 class="mb-3">
-                  <small
-                    class="align-top"
-                    style="font-size: 22px; line-height: 45px"
-                    >$</small
-                  >11.49<small
-                    class="align-bottom"
-                    style="font-size: 16px; line-height: 40px"
-                    >/ Month</small
-                  >
-                </h1>
-                <a class="btn btn-primary px-4 py-2" href="">Buy Now</a>
-              </div>
-              <div class="p-4">
-                <p class="border-bottom pb-3">
-                  <i class="fa fa-check text-primary me-3"></i>100 GB Disk Space
-                </p>
-                <p class="border-bottom pb-3">
-                  <i class="fa fa-check text-primary me-3"></i>Unlimited
-                  Bandwith
-                </p>
-                <p class="border-bottom pb-3">
-                  <i class="fa fa-check text-primary me-3"></i>Upgrade to
-                  Positive SSL
-                </p>
-                <p class="border-bottom pb-3">
-                  <i class="fa fa-check text-primary me-3"></i>Automatic Malware
-                  Removal
-                </p>
-                <p class="mb-0">
-                  <i class="fa fa-check text-primary me-3"></i>30 Days Money
-                  Back Guarantee
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Pricing End -->
-
+          {% endfor %}
+    <!-- Pricing end -->      
     <!-- Footer Start -->
     <div
       class="container-fluid bg-primary text-white footer mt-0 pt-5 wow fadeIn"
@@ -519,6 +358,6 @@
     <script src="lib/lightbox/js/lightbox.min.js"></script>
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
 
-    <script src="main.js"></script>
+    <script src="../static/scripts/main.js"></script>
   </body>
 </html>

@@ -407,6 +407,7 @@
           </p>
         </div>
         <div class="row gy-5 gx-3">
+          {% for plan in hosting_plan %}
           <div class="col-lg-3 col-md-3 wow fadeInUp" data-wow-delay="0.2s">
             <div
               class="position-relative shadow rounded border-top border-5 border-primary"
@@ -418,10 +419,9 @@
                 <i class="fa fa-share-alt text-white"></i>
               </div>
               <div class="text-center border-bottom p-4 pt-5">
-                <h4 class="fw-bold">Share Hosting</h4>
+                <h4 class="fw-bold">{{ plan.name }}</h4>
                 <p class="mb-0">
-                  Eirmod erat dolor amet est clita lorem erat justo rebum elitr
-                  eos
+                  {{ plan.description }}
                 </p>
               </div>
               <div class="text-center border-bottom p-4">
@@ -432,30 +432,44 @@
                   <small
                     class="align-top"
                     style="font-size: 22px; line-height: 45px"
-                    >$</small
-                  >2.49<small
+                    >Ksh</small
+                  >{{ plan.price }}<small
                     class="align-bottom"
                     style="font-size: 16px; line-height: 40px"
                     >/ Month</small
                   >
                 </h1>
-                <a class="btn btn-primary px-4 py-2" href="{{ url_for('account') }}">Buy Now</a>
+                <!-- Takes a hosting_plan id-->
+                <a class="btn btn-primary px-4 py-2" href="{{ url_for('order', hosting_plan_id=plan.id) }}">Buy Now</a>
               </div>
               <div class="p-4">
                 <p class="border-bottom pb-3">
-                  <i class="fa fa-check text-primary me-3"></i>100 GB Disk Space
+                  <i class="fa fa-check text-primary me-3"></i>Host 
+                  {{ plan.max_websites }} Domain
                 </p>
                 <p class="border-bottom pb-3">
-                  <i class="fa fa-check text-primary me-3"></i>Unlimited
-                  Bandwith
+                  <i class="fa fa-check text-primary me-3"></i>{{ plan.max_space }}GB
+                  SSD Storage
                 </p>
                 <p class="border-bottom pb-3">
-                  <i class="fa fa-check text-primary me-3"></i>Upgrade to
-                  Positive SSL
+                  <i class="fa fa-check text-primary me-3"></i>{{ plan.max_bandwidth }}GB
+                  Bandwidth
                 </p>
                 <p class="border-bottom pb-3">
-                  <i class="fa fa-check text-primary me-3"></i>Automatic Malware
-                  Removal
+                  <i class="fa fa-check text-primary me-3"></i>
+                  {% if plan.max_email == 500 %}
+                  Unlimited Email Accounts
+                  {% else %}
+                  {{ plan.max_email }} Email Accounts
+                  {% endif %}
+                </p>
+                <p class="border-bottom pb-3">
+                  <i class="fa fa-check text-primary me-3"></i>
+                  {% if plan.max_databases == 500 %}
+                  Unlimited Databases
+                  {% else %}
+                  {{ plan.max_databases }} Databases
+                  {% endif %}
                 </p>
                 <p class="mb-0">
                   <i class="fa fa-check text-primary me-3"></i>30 Days Money
@@ -464,6 +478,7 @@
               </div>
             </div>
           </div>
+          {% endfor %}
     <!-- Pricing End -->
 
     <!-- Testimonials -->

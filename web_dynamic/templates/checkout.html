@@ -74,7 +74,8 @@
               </select>
             </div>
 
-            <button type="submit">Pay Now</button>
+            <!-- Pass the order id to button -->
+            <button type="submit" class="pay" order_id="{{ order_id }}">Pay Now</button>
           </form>
         </div>
       </div>
@@ -97,5 +98,7 @@
         });
       });
     </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="../static/scripts/order.js"></script>
   </body>
 </html>

@@ -4,6 +4,7 @@
 from flask import Flask, render_template, jsonify, abort, redirect, Response
 import os
 from dotenv import load_dotenv
+import requests
 from auth import Auth
 from flask import request
 from sqlalchemy.orm.exc import NoResultFound
@@ -20,13 +21,17 @@ app.secret_key = "SITESWIFT_SECRET"
 app.config.update(SESSION_COOKIE_MAX_AGE=60)
 
 
-@app.route("/", methods=['GET'], strict_slashes=False)
+@app.route("/", methods=['GET', 'POST'], strict_slashes=False)
 def index() -> str:
     """ GET /
     """
+    url = "http://localhost:5000/api/v1/hosting_plans"
+    hosting_plan = requests.get(url).json()
+    print(hosting_plan)
+
     cache_id=str(uuid.uuid4())
     
-    return render_template('index.html', cache_id=cache_id)
+    return render_template('index.html', hosting_plan=hosting_plan, cache_id=cache_id)
 
 
 @app.route("/register", methods=['GET'], strict_slashes=False)
@@ -113,8 +118,21 @@ def account() -> str:
     if not user:
         flash('Please login to continue.')
         return redirect('/register')
+    url = "http://localhost:5000/api/v1/orders"
+    orders = requests.get(url).json()
+    user_orders = []
+    for order in orders:
+        if order['user_id'] == user.id:
+            user_orders.append(order)
+
+    url2 = "http://localhost:5000/api/v1/hosting_plans"
+    hosting_plans = requests.get(url2).json()
+
+    # Sort orders by date
+    user_orders = sorted(user_orders, key=lambda x: x['created_at'], reverse=True)
+    
     flash('Welcome back, {}'.format(user.first_name))
-    return render_template('myaccount.html', user=user)
+    return render_template('myaccount.html', user=user, orders=user_orders, hosting_plans=hosting_plans)
 
 
 @app.route("/profile", methods=['GET'], strict_slashes=False)
@@ -183,7 +201,38 @@ def update_profile() -> str:
 def services() -> str:
     """ GET /services
     """
-    return render_template('services.html')
+
+    url = "http://localhost:5000/api/v1/hosting_plans"
+    hosting_plan = requests.get(url).json()
+    print(hosting_plan)
+
+    cache_id=str(uuid.uuid4())
+    
+    return render_template('services.html', hosting_plan=hosting_plan, cache_id=cache_id)
+
+
+@app.route("/order/<hosting_plan_id>", methods=['GET'], strict_slashes=False)
+def order(hosting_plan_id) -> str:
+    """ GET /order
+    """
+    session_id = request.cookies.get('session_id')
+    user = Auth.get_user_from_session_id(session_id)
+    if not user:
+        flash('Please login to continue.')
+        return redirect('/register')
+    url1 = "http://localhost:5000/api/v1/hosting_plans/{}".format(hosting_plan_id)
+    hosting_plan = requests.get(url1).json()
+
+    # Create order
+    url2 = "http://localhost:5000/api/v1/orders"
+    data = {
+        "user_id": user.id,
+        "hosting_plan_id": hosting_plan_id,
+        "amount": hosting_plan['price'],
+        "status": "pending"
+    }
+    order = requests.post(url2, json=data).json()
+    return render_template('checkout.html', order_id=order['id'])
 
 
 @app.route("/team", methods=['GET'], strict_slashes=False)

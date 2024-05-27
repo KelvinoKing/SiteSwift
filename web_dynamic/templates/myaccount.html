@@ -99,16 +99,11 @@
                   />
                 </div>
                 <div class="author-card-details">
-                  <h5 class="author-card-name text-lg">Daniel Adams</h5>
-                  <span class="author-card-position"
-                    >Joined February 06, 2017</span
-                  >
+                  <h5 class="author-card-name text-lg">{{ user.first_name }} {{ user.last_name }}</h5>
                 </div>
                 <div class="mt-3 ">
                     <div class="info-guard">
-									<p class="text-muted info">Full Stack Developer</p>
-									<p class="text-muted info">Langata, Kenya</p>
-									<p class="text-muted info">Email: recipeient@gmail.com</p>
+									<p class="text-muted info">Email: {{ user.email }}</p>
                                     </div>
 									<button class="btn btn-primary">Follow</button>
 									<!-- <button class="btn btn-outline-primary email">Message</button> -->
@@ -168,59 +163,36 @@
                   <tr>
                     <th>Order Numbers</th>
                     <th>Date Purchased</th>
-                    <th>Site Hosted</th>
-                    <th>Total</th>
+                    <th>Hosting Plan</th>
+                    <th>Price</th>
                   </tr>
                 </thead>
                 <tbody>
+                  {% for order in orders %}
                   <tr>
                     <td>
                       <a
                         class="navi-link"
                         href="#order-details"
                         data-toggle="modal"
-                        >78A643CD409</a
+                        >{{ order.id }}</a
                       >
                     </td>
-                    <td>August 08, 2017</td>
                     <td>
-                      <span >Workout app</span>
+                      <span>{{ order.created_at }}</span>
                     </td>
-                    <td><span>$760.50</span></td>
+                    <td>
+                      <span >
+                        {% for hosting in hosting_plans %}
+                        {% if hosting.id == order.hosting_plan_id %}
+                        {{ hosting.name }}
+                        {% endif %}
+                        {% endfor %}
+                      </span>
+                    </td>
+                    <td><span>Ksh {{ order.amount }}/=</span></td>
                   </tr>
-                  <tr>
-                    <td>
-                      <a
-                        class="navi-link"
-                        href="#order-details"
-                        data-toggle="modal"
-                        >34VB5540K83</a
-                      >
-                    </td>
-                    <td>July 21, 2017</td>
-                    <td>
-                      <span >Blog site</span>
-                    </td>
-                    <td>$315.20</td>
-                  </tr>
-                  
-                  </tr>
-                  <tr>
-                    <td>
-                      <a
-                        class="navi-link"
-                        href="#order-details"
-                        data-toggle="modal"
-                        >47H76G09F33</a
-                      >
-                    </td>
-                    <td>March 30, 2017</td>
-                    <td>
-                    <span >Transport App</span>
-
-                    </td>
-                    <td>$86.40</td>
-                  </tr>
+                  {% endfor %}
                 </tbody>
               </table>
             </div>
