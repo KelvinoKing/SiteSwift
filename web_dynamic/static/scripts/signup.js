@@ -26,7 +26,7 @@ $(document).ready(function() {
     // Make call to post user information
     $.ajax({
       type: "POST",
-      url: "http://127.0.0.1:5001/users",
+      url: "/users",
       contentType: "application/json",
       data: JSON.stringify(userData),
       xhrFields: {
@@ -34,7 +34,7 @@ $(document).ready(function() {
     },
       success: function(response) {
         alert("User created successfully. Please log in.");
-        window.location.href = "/register";
+        window.location.href = "register";
       },
       error: function(xhr, status, error) {
         var errorMessage = "Error creating user";
@@ -65,14 +65,15 @@ $(document).ready(function() {
     // Make call for authentication (You need to implement this endpoint in your API)
     $.ajax({
       type: "POST",
-      url: "http://127.0.0.1:5001/sessions", // Adjust the URL based on your API endpoint for authentication
+      url: "/sessions", // Adjust the URL based on your API endpoint for authentication
       contentType: "application/json",
       data: JSON.stringify(loginData),
       xhrFields: {
         withCredentials: true  // Include credentials
     },
       success: function(response) {
-        window.location.href = "http://127.0.0.1:5001/account";
+        alert("You have been logged in.");
+        window.location.href = "account";
       },
       error: function(xhr, status, error) {
         var errorMessage = "Error loging in";
@@ -103,14 +104,15 @@ $(document).ready(function() {
     // Make call for authentication (You need to implement this endpoint in your API)
     $.ajax({
       type: "POST",
-      url: "http://127.0.0.1:5001/admin/sessions", // Adjust the URL based on your API endpoint for authentication
+      url: "/admin/sessions", // Adjust the URL based on your API endpoint for authentication
       contentType: "application/json",
       data: JSON.stringify(loginData),
       xhrFields: {
         withCredentials: true  // Include credentials
     },
       success: function(response) {
-       window.location.href = "http://127.0.0.1:5001/admin/account";
+        alert("You have been logged in.");
+       window.location.href = "/admin/account/dashboard";
       },
       error: function(xhr, status, error) {
         var errorMessage = "Error loging in";

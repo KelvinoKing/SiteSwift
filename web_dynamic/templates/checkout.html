@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Checkout Page</title>
-    <link rel="stylesheet" href="../static/styles/main.css" />
+    <link rel="stylesheet" href="../static/styles/main.css?{{ cached_id }}" />
   </head>
   <body>
     <div class="section">
@@ -99,6 +99,6 @@
       });
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script src="../static/scripts/order.js"></script>
+    <script src="../static/scripts/order.js?{{ cached_id }}"></script>
   </body>
 </html>

@@ -1,24 +1,20 @@
-$(document).ready(function() {
-  $(".signout #admin_signout").click(function() {
+$(document).ready(function () {
+  // Select the account icon button
+  const accountButton = $('button[aria-label="Account"]');
+
+  // Add click event listener to the account icon button
+  accountButton.on('click', function () {
+    // Log out the user via AJAX DELETE request
     $.ajax({
-      type: "DELETE",
-      url: "http://127.0.0.1/admin/session",
-      xhrFields: {
-        withCredentials: true
+      url: '/admin/sessions',
+      type: 'DELETE',
+      success: function () {
+        // Redirect to the login page
+        alert('You have been logged out.');
+        window.location.href = '';
       },
-      success: function(response) {
-        window.location.href = "/admin";
-      },
-      error: function(xhr, status, error) {
-        var errorMessage = "Error signing out";
-
-        if (xhr.responseJSON && xhr.responseJSON.message) {
-          errorMessage += ": " + xhr.responseJSON.message;
-        } else {
-          errorMessage += ": " + status + " - " + error;
-        }
-
-        alert(errorMessage);
+      error: function (error) {
+        console.log('Error logging out:', error);
       }
     });
   });

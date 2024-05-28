@@ -82,7 +82,7 @@ def put_user(user_id):
             if not allowed_file(profile_pic.filename):
                 abort(400, 'Invalid file type')
             filename = secure_filename(profile_pic.filename)
-            upload_path = os.path.join("/home/kelvino/alx-projects/SiteSwift/web_dynamic/static/uploads", filename)
+            upload_path = os.path.join("web_dynamic/static/uploads", filename)
             
             # Create directory if it does not exist
             os.makedirs(os.path.dirname(upload_path), exist_ok=True)

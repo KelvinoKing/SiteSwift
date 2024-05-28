@@ -14,8 +14,8 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../static/styles/main.css" />
-    <link rel="stylesheet" href="../static/styles/admin.css" />
+    <link rel="stylesheet" href="../static/styles/main.css?{{ cached_id }}" />
+    <link rel="stylesheet" href="../static/styles/admin.css?{{ cached_id }}" />
   </head>
   <body>
     <div class="flash_container">
@@ -77,7 +77,7 @@
     </script>
 
     <!-- Template Javascript -->
-    <script src="../static/scripts/main.js"></script>
-    <script src="../static/scripts/signup.js"></script>
+    <script src="../static/scripts/signup.js?{{ cached_id }}"></script>
+    <script src="../static/scripts/main.js?{{ cached_id }}"></script>
   </body>
 </html>

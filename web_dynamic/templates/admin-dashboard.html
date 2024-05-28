@@ -14,7 +14,7 @@
     />
     <link
       rel="stylesheet"
-      href="{{ url_for('static', filename='styles/admin.css') }}"
+      href="{{ url_for('static', filename='styles/admin.css') }}?{{ cached_id }}"
     />
   </head>
   <body>
@@ -177,9 +177,8 @@
         }, duration);
       });
     </script>
-    <!-- ApexCharts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.35.5/apexcharts.min.js"></script>
-    <!-- Custom JS -->
-    <script src="../static/scripts/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ url_for('static', filename='scripts/main.js') }}?{{ cached_id }}"></script>
+    <script src="{{ url_for('static', filename='scripts/admin.js') }}?{{ cached_id }}"></script>
   </body>
 </html>

@@ -14,19 +14,9 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../static/styles/main.css" />
+    <link rel="stylesheet" href="../static/styles/main.css?{{ cached_id }}" />
   </head>
   <body>
-    <div class="flash_container">
-      {% with messages = get_flashed_messages(with_categories=true) %}
-    {% for category, message in messages %}
-        <div class="alert alert-{{ category }}">
-            {{ message }}
-        </div>
-    {% endfor %}
-    {% endwith %}
-    </div>
-
     <!-- Navbar Start -->
     
     <!-- Navbar End -->
@@ -198,7 +188,7 @@
                       </span>
                     </td>
                     <td>
-                      <span>{{ order.server_ip }}</span>
+                      <span>{{ order.ip_address }}</span>
                     </td>
                     <td><span>Ksh {{ order.amount }}/=</span></td>
                   </tr>

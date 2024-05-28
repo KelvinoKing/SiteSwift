@@ -14,7 +14,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../static/styles/main.css" />
+    <link rel="stylesheet" href="../static/styles/main.css?{{ cached_id }}" />
   </head>
   <body>
     <!-- Navbar Start -->
@@ -60,7 +60,7 @@
     ></script>
 
     <!-- Template Javascript -->
-    <script src="../static/scripts/main.js"></script>
-    <script src="../static/scripts/update.js"></script>
+    <script src="../static/scripts/main.js?{{ cached_id }}"></script>
+    <script src="../static/scripts/update.js?{{ cached_id }}"></script>
   </body>
 </html>
