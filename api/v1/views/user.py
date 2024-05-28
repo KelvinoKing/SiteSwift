@@ -4,6 +4,9 @@ from api.v1.views import app_views
 from flask import jsonify, abort, request
 from models import storage
 from models.user import User
+from werkzeug.utils import secure_filename
+import os
+from flask import current_app as app
 
 
 @app_views.route('/users', methods=['GET'], strict_slashes=False)
@@ -71,14 +74,34 @@ def put_user(user_id):
     if not user:
         abort(404)
     
-    data = request.get_json()
-    if not data:
-        abort(400, 'Not a JSON')
+    filename = None
+    if 'profile_pic' in request.files:
+        profile_pic = request.files['profile_pic']
+
+        if profile_pic.filename != '':
+            if not allowed_file(profile_pic.filename):
+                abort(400, 'Invalid file type')
+            filename = secure_filename(profile_pic.filename)
+            upload_path = os.path.join("/home/kelvino/alx-projects/SiteSwift/web_dynamic/static/uploads", filename)
+            
+            # Create directory if it does not exist
+            os.makedirs(os.path.dirname(upload_path), exist_ok=True)
+            
+            # Save the file
+            profile_pic.save(upload_path)
+    
+    data = request.form.to_dict()
+    if filename:
+        data['image'] = filename
     
     for key, value in data.items():
-        if key not in ['id', 'email', 'created_at', 'updated_at']:
+        if key not in ['id', 'created_at', 'updated_at']:
             setattr(user, key, value)
     
     user.save()
     
     return jsonify(user.to_dict()), 200
+
+def allowed_file(filename):
+    ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS

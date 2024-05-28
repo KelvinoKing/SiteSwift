@@ -94,7 +94,7 @@
               <div class="author-card-profile">
                 <div class="author-card-avatar">
                   <img
-                    src="https://bootdey.com/img/Content/avatar/avatar1.png"
+                    src="../static/uploads/{{ user.image }}"
                     alt="Daniel Adams"
                   />
                 </div>
@@ -198,7 +198,7 @@
                       </span>
                     </td>
                     <td>
-                      <span>{{ order.ip_address }}</span>
+                      <span>{{ order.server_ip }}</span>
                     </td>
                     <td><span>Ksh {{ order.amount }}/=</span></td>
                   </tr>

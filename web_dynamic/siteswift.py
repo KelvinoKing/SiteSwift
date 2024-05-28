@@ -113,15 +113,15 @@ def account() -> str:
     """ GET /account
     """
     session_id = request.cookies.get('session_id')
-    user = Auth.get_user_from_session_id(session_id)
-    if not user:
+    user1 = Auth.get_user_from_session_id(session_id)
+    if not user1:
         flash('Please login to continue.')
         return redirect('/register')
     url = "http://localhost:5000/api/v1/orders"
     orders = requests.get(url).json()
     user_orders = []
     for order in orders:
-        if order['user_id'] == user.id:
+        if order['user_id'] == user1.id:
             user_orders.append(order)
 
     url2 = "http://localhost:5000/api/v1/hosting_plans"
@@ -129,8 +129,12 @@ def account() -> str:
 
     # Sort orders by date
     user_orders = sorted(user_orders, key=lambda x: x['created_at'], reverse=True)
+
+    user_api_url = "http://localhost:5000/api/v1/users/{}".format(user1.id)
+    user = requests.get(user_api_url).json()
+    print(user)
     
-    flash('Welcome back, {}'.format(user.first_name))
+    flash('Welcome back, {}'.format(user1.first_name))
     return render_template('myaccount.html', user=user, orders=user_orders, hosting_plans=hosting_plans)
 
 

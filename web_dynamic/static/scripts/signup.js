@@ -33,6 +33,7 @@ $(document).ready(function() {
         withCredentials: true  // Include credentials
     },
       success: function(response) {
+        alert("User created successfully. Please log in.");
         window.location.href = "/register";
       },
       error: function(xhr, status, error) {

@@ -25,27 +25,23 @@
           <header class="mb-0">Create Your SiteSwift Profile</header>
           <hr color="white">
           <form action="#">
-            <!-- <label for="first_name">First Name:</label> -->
-        <input type="text" name="first_name" placeholder="First Name" required />
-        <br />
-        <!-- <label for="last_name">Last Name:</label> -->
-        <input type="text" name="last_name" placeholder="Last Name" required />
-        <br />
-        <label for="profile_pic">Update profile picture:</label>
-        <input type="file" name="profile_pic" accept="image/*" placeholder="" required />
-        <br />
-        <!-- <label for="email">Email:</label> -->
-        <input type="email" name="email"placeholder="Email:" required />
-        <br />
-        <!-- <label for="phone">Phone</label> -->
-        <input type="text" name="phone" placeholder="Phone" required />
-        <br />
+            <input type="hidden" name="id_user" value="{{ user.id }}" />
+            <!-- Other form fields -->
+            <input type="text" name="first_name" placeholder="First Name" required />
+            <br />
+            <input type="text" name="last_name" placeholder="Last Name" required />
+            <br />
+            <label for="profile_pic">Update profile picture:</label>
+            <input type="file" name="profile_pic" accept="image/*" placeholder="" required />
+            <br />
+            <input type="email" name="email" placeholder="Email:" required />
+            <br />
             <div class="checkbox">
               <input type="checkbox" id="signupCheck" />
               <label for="signupCheck">I accept all terms & conditions</label>
             </div>
-            <input type="submit" value="Update Profile" />
-          </form>
+            <input type="submit" class="update_profile" value="Update Profile" />
+          </form>          
         </div>
 
 
@@ -65,5 +61,6 @@
 
     <!-- Template Javascript -->
     <script src="../static/scripts/main.js"></script>
+    <script src="../static/scripts/update.js"></script>
   </body>
 </html>

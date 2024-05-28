@@ -8,6 +8,8 @@ from flask_cors import CORS
 
 
 app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = '/home/kelvino/alx-projects/Siteswift/api/v1/uploads'
+app.config['MAX_CONTENT_PATH'] = 16 * 1024 * 1024  # 16 MB limit for uploads
 app.register_blueprint(app_views)
 cors = CORS(app, resources={r"/api/v1/*": {"origins": ["http://127.0.0.1:5001", "http://127.0.0.1:5000"]}}, supports_credentials=True)
 
