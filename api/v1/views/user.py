@@ -10,10 +10,8 @@ from models.user import User
 def get_users():
     """ Returns all users """
     
-    print('Getting users')
     users = storage.all(User).values()
     users = [user.to_dict() for user in users]
-    print(users)
     
     return jsonify(users)
 

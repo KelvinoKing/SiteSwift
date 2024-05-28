@@ -14,3 +14,4 @@ from api.v1.views.invoice import *
 from api.v1.views.orders import *
 from api.v1.views.payment import *
 from api.v1.views.profile import *
+from api.v1.views.pay import *
