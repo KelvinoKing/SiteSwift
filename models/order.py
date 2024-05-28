@@ -11,5 +11,6 @@ class Order(BaseModel, Base):
     hosting_plan_id = Column(String(60), ForeignKey('hosting_plan.id'), nullable=False)
     amount = Column(Float, nullable=False)
     status = Column(String(20), nullable=False)  # e.g., 'pending', 'completed'
+    ip_address = Column(String(20), nullable=True)
     user = relationship('User', backref='orders', cascade='all, delete-orphan', single_parent=True, lazy=True)
     hosting_plan = relationship('HostingPlan', backref='orders', cascade='all, delete-orphan', single_parent=True, lazy=True)

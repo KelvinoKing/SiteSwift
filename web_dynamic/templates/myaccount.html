@@ -170,6 +170,7 @@
                     <th>Order Numbers</th>
                     <th>Date Purchased</th>
                     <th>Hosting Plan</th>
+                    <th>Server IP</th>
                     <th>Price</th>
                   </tr>
                 </thead>
@@ -195,6 +196,9 @@
                         {% endif %}
                         {% endfor %}
                       </span>
+                    </td>
+                    <td>
+                      <span>{{ order.ip_address }}</span>
                     </td>
                     <td><span>Ksh {{ order.amount }}/=</span></td>
                   </tr>

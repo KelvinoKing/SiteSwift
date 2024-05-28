@@ -9,10 +9,15 @@ import base64
 from datetime import datetime
 
 
-@app_views.route('/pay')
+my_endpoint = "https://8744-154-70-56-129.ngrok-free.app"
+
+@app_views.route('/pay', methods=['POST'], strict_slashes=False)
 def MpesaExpress():
-  amount = request.args.get('amount')
-  phone_number = request.args.get('phone_number')
+  """Make a payment request to Safaricom API"""
+
+  data = request.get_json()
+  amount = data.get('amount')
+  phone_number = data.get('phone_number')
 
   endpoint = "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest"
   access_token = getAccessToken()
@@ -30,7 +35,7 @@ def MpesaExpress():
     "PartyA": phone_number,
     "PartyB": "174379",
     "PhoneNumber": phone_number,
-    "CallBackURL": "https://1f5d-154-70-56-129.ngrok-free.app" + "/api/v1/callback",
+    "CallBackURL": "https://8744-154-70-56-129.ngrok-free.app/api/v1/callback",
     "AccountReference": "Test",
     "TransactionDesc": "Test",
     "Amount": amount
@@ -41,14 +46,14 @@ def MpesaExpress():
      if isinstance(value, bytes):
        data[key] = value.decode()  # decode bytes to string
   response = requests.post(endpoint, json=data, headers=headers)
-  return response.json()
+  return jsonify(response.json())
 
 
-@app_views.route('/callback', methods=['POST'], strict_slashes=False)
-def callback():
-  data = request.get_json()
-  print(data)
-  return "Success", 200
+@app_views.route('/callback', methods=['POST'])
+def incoming():
+    data = request.json
+    print(data)
+    return "OK"
 
 
 """Get access token from Safaricom API

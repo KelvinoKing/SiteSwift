@@ -115,6 +115,7 @@
                 <thead>
                   <tr>
                     <th>Order ID</th>
+                    <th>Server IP</th>
                     <th>Product</th>
                     <th>Customer</th>
                     <th>Amount</th>
@@ -125,6 +126,7 @@
                   {% for order in orders %}
                   <tr data-status="Completed">
                     <td>{{ order.id }}</td>
+                    <td>{{ order.ip_address }}</td>
                     <td>
                       {% for hosting in hosting_plans %} {% if hosting.id ==
                       order.hosting_plan_id %} {{ hosting.name }} {% endif %} {%

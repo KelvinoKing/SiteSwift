@@ -76,7 +76,7 @@ def put_order(order_id):
         abort(400, 'Not a JSON')
             
     for key, value in data.items():
-        if key == 'status':
+        if key == 'status' or key == 'ip_address':
             setattr(order, key, value)
                 
     order.save()
