@@ -27,23 +27,23 @@
 
     <div class="grid-container">
       <!-- Header -->
-      <header class="header">
-        <button
+      <header class="header mt-0">
+        <!-- <button
           class="menu-icon"
           aria-label="Open Sidebar"
           onclick="openSidebar()"
         >
           <span class="material-icons-outlined">menu</span>
-        </button>
-        <div class="header-left">
+        </button> -->
+        <!-- <div class="header-left">
           <button aria-label="Search">
             <span class="material-icons-outlined">search</span>
           </button>
-        </div>
+        </div> -->
         <div class="header-right">
-          <button aria-label="Notifications">
+          <!-- <button aria-label="Notifications">
             <span class="material-icons-outlined">notifications</span>
-          </button>
+          </button> -->
           <button aria-label="Email">
             <span class="material-icons-outlined">email</span>
           </button>
@@ -60,13 +60,13 @@
           <div class="sidebar-brand">
             <span class="material-icons-outlined">business</span> SiteSwift
           </div>
-          <button
+          <!-- <button
             aria-label="Close Sidebar"
             class="close-icon"
             onclick="closeSidebar()"
           >
             <span class="material-icons-outlined">close</span>
-          </button>
+          </button> -->
         </div>
 
         <ul class="sidebar-list">
@@ -167,6 +167,16 @@
     </div>
 
     <!-- Scripts -->
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var duration = 5000; // 5000 milliseconds = 5 seconds
+        var flashMessage = document.getElementById("flash-message");
+        setTimeout(function () {
+          flashMessage.classList.add("hide");
+        }, duration);
+      });
+    </script>
     <!-- ApexCharts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.35.5/apexcharts.min.js"></script>
     <!-- Custom JS -->

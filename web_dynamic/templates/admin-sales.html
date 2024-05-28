@@ -21,22 +21,22 @@
     <div class="grid-container">
       <!-- Header -->
       <header class="header">
-        <button
+        <!-- <button
           class="menu-icon"
           aria-label="Open Sidebar"
           onclick="openSidebar()"
         >
           <span class="material-icons-outlined">menu</span>
-        </button>
+        </button> -->
         <div class="header-left">
-          <button aria-label="Search">
+          <!-- <button aria-label="Search">
             <span class="material-icons-outlined">search</span>
-          </button>
+          </button> -->
         </div>
         <div class="header-right">
-          <button aria-label="Notifications">
+          <!-- <button aria-label="Notifications">
             <span class="material-icons-outlined">notifications</span>
-          </button>
+          </button> -->
           <button aria-label="Email">
             <span class="material-icons-outlined">email</span>
           </button>
@@ -53,13 +53,13 @@
           <div class="sidebar-brand">
             <span class="material-icons-outlined">business</span> SiteSwift
           </div>
-          <button
+          <!-- <button
             aria-label="Close Sidebar"
             class="close-icon"
             onclick="closeSidebar()"
           >
             <span class="material-icons-outlined">close</span>
-          </button>
+          </button> -->
         </div>
 
         <ul class="sidebar-list">
@@ -126,18 +126,14 @@
                   <tr data-status="Completed">
                     <td>{{ order.id }}</td>
                     <td>
-                      {% for hosting in hosting_plans %}
-                      {% if hosting.id == order.hosting_plan_id %}
-                      {{ hosting.name }}
-                      {% endif %}
-                      {% endfor %}
+                      {% for hosting in hosting_plans %} {% if hosting.id ==
+                      order.hosting_plan_id %} {{ hosting.name }} {% endif %} {%
+                      endfor %}
                     </td>
                     <td>
-                      {% for customer in users %}
-                      {% if customer.id == order.user_id %}
-                      {{ customer.first_name }} {{ customer.last_name }}
-                      {% endif %}
-                      {% endfor %}
+                      {% for customer in users %} {% if customer.id ==
+                      order.user_id %} {{ customer.first_name }} {{
+                      customer.last_name }} {% endif %} {% endfor %}
                     </td>
                     <td>Ksh {{ order.amount }}/=</td>
                     <td>{{ order.status }}</td>

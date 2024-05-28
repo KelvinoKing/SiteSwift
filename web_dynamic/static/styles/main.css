@@ -1584,3 +1584,6 @@ button:hover {
   background-color: #ff9800;
   color: #fff;
 }
+.flash-message.hide {
+  display: none;
+}
