@@ -89,7 +89,6 @@ def login() -> Union[str, Tuple[str, int]]:
     if not Auth.valid_login(email, password):
         return ('Invalid email or password', 401)
     session_id = Auth.create_session(email)
-    print('Session created: {}'.format(session_id))
     if not session_id:
         abort(401)
     resp = Response('Success')
@@ -133,7 +132,6 @@ def account() -> str:
 
     user_api_url = "http://localhost:5000/api/v1/users/{}".format(user1.id)
     user = requests.get(user_api_url).json()
-    print(user)
     
     flash('Welcome back, {}'.format(user1.first_name))
     cached_id = str(uuid.uuid4())
@@ -158,32 +156,29 @@ def profile() -> str:
 def reset_password() -> str:
     """ GET /reset_password
     """
-    email = request.form.get('email')
-    user = Auth._db.find_user_by(email=email)
-    if not user:
-        flash('User not found')
-        return redirect('/register')
-    token = Auth.get_reset_password_token(email)
-    flash('Reset password token: {}'.format(token))
+
     cached_id = str(uuid.uuid4())
-    return render_template('reset_password.html', cached_id=cached_id)
+    return render_template('forgot-password.html', cached_id=cached_id)
 
 
 @app.route("/reset_password", methods=['POST'], strict_slashes=False)
 def update_password() -> str:
     """ POST /reset_password
     """
-    email = request.form.get('email')
+    data = request.get_json()
+    email = data.get('email')
+    password = data.get('password')
+
     user = Auth._db.find_user_by(email=email)
-    token = user.reset_token
-    password = request.form.get('password')
+    if not user:
+        return "User not found."
+
+    reset_token = Auth.get_reset_password_token(email)
     try:
-        Auth.update_password(token, password)
-        flash('Password updated successfully. Kindly login to continue.')
-        return redirect('/register')
+        Auth.update_password(reset_token, password)
     except ValueError:
-        flash('Invalid token')
-        return redirect('/register')
+        return "Invalid reset token."
+    return redirect('/register')
     
 
 @app.route("/update_profile", methods=['POST'], strict_slashes=False)
@@ -256,6 +251,14 @@ def about() -> str:
     """
     cached_id=str(uuid.uuid4())
     return render_template('about.html', cached_id=cached_id)
+
+
+@app.route("/blog", methods=['GET'], strict_slashes=False)
+def blog() -> str:
+    """ GET /blog
+    """
+    cached_id=str(uuid.uuid4())
+    return render_template('blog.html', cached_id=cached_id)
 
 
 @app.route("/admin", methods=['GET'], strict_slashes=False)

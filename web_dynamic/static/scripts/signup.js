@@ -33,8 +33,12 @@ $(document).ready(function() {
         withCredentials: true  // Include credentials
     },
       success: function(response) {
-        alert("User created successfully. Please log in.");
-        window.location.href = "register";
+        if (response.success) {
+          alert("User created successfully. Kindly login to continue.");
+          window.location.href = "register";
+        } else {
+          window.location.href = "register";
+        }
       },
       error: function(xhr, status, error) {
         var errorMessage = "Error creating user";
@@ -72,8 +76,13 @@ $(document).ready(function() {
         withCredentials: true  // Include credentials
     },
       success: function(response) {
-        alert("You have been logged in.");
-        window.location.href = "account";
+        if (response.success) {
+          alert("You have been logged in.");
+          window.location.href = "account";
+        } else {
+          alert("You have been logged in.");
+          window.location.href = "account";
+        }
       },
       error: function(xhr, status, error) {
         var errorMessage = "Error loging in";
@@ -111,8 +120,13 @@ $(document).ready(function() {
         withCredentials: true  // Include credentials
     },
       success: function(response) {
-        alert("You have been logged in.");
-       window.location.href = "/admin/account/dashboard";
+        if (response.success) {
+          alert("You have been logged in.");
+          window.location.href = "/admin/account/dashboard";
+        } else {
+          alert("You have been logged in.");
+          window.location.href = "/admin/account/dashboard";
+        }
       },
       error: function(xhr, status, error) {
         var errorMessage = "Error loging in";
