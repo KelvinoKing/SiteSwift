@@ -18,13 +18,6 @@
     <link rel="stylesheet" href="../static/styles/admin.css?{{ cached_id }}" />
   </head>
   <body>
-    <div class="flash_container">
-      {% with messages = get_flashed_messages(with_categories=true) %} {% for
-      category, message in messages %}
-      <div class="alert alert-{{ category }}">{{ message }}</div>
-      {% endfor %} {% endwith %}
-    </div>
-
     <!-- Navbar Start -->
 
     <section class="section">
