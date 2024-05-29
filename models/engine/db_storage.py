@@ -7,7 +7,6 @@ from models.invoice import Invoice
 from models.order import Order
 from models.payment import Payment
 from models.profile import Profile
-from models.service import Service
 from models.user import User
 import os
 from dotenv import load_dotenv
@@ -24,7 +23,6 @@ classes = {
     'User': User,
     'Admin': Admin,
     'Profile': Profile,
-    'Service': Service,
     'HostingPlan': HostingPlan,
     'BillingCycle': BillingCycle,
     'Order': Order,
@@ -46,15 +44,24 @@ class DBStorage:
         SITESWIFT_MYSQL_PWD = os.getenv('SITESWIFT_MYSQL_PWD')
         SITESWIFT_MYSQL_DB = os.getenv('SITESWIFT_MYSQL_DB')
         SITESWIFT_ENV = os.getenv('SITESWIFT_ENV')
+        SITESWIFT_MYSQL_PORT = os.getenv('SITESWIFT_MYSQL_PORT', '3307') 
         
-        self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}'.
+        print(f"User: {SITESWIFT_MYSQL_USER}")
+        print(f"Host: {SITESWIFT_MYSQL_HOST}")
+        print(f"Password: {SITESWIFT_MYSQL_PWD}")
+        print(f"Database: {SITESWIFT_MYSQL_DB}")
+        print(f"Port: {SITESWIFT_MYSQL_PORT}")
+        
+        self.__engine = create_engine('mysql+mysqldb://{}:{}@{}:{}/{}'.
                                       format(SITESWIFT_MYSQL_USER,
                                              SITESWIFT_MYSQL_PWD,
                                              SITESWIFT_MYSQL_HOST,
+                                             SITESWIFT_MYSQL_PORT,
                                              SITESWIFT_MYSQL_DB))
         
         if SITESWIFT_ENV == 'test':
             Base.metadata.drop_all(self.__engine)
+
 
     @property
     def _session(self) -> Session:
@@ -172,6 +179,7 @@ class DBStorage:
         user = self._session.query(User).filter(User.id == user_id).first()
         if user is None:
             return
+        
         for key, value in kwargs.items():
             if hasattr(user, key):
                 setattr(user, key, value)

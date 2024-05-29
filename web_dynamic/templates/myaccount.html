@@ -14,7 +14,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../static/styles/main.css" />
+    <link rel="stylesheet" href="../static/styles/main.css?{{ cached_id }}" />
   </head>
   <body>
     <!-- Navbar Start -->
@@ -78,27 +78,22 @@
                   data-toggle="tooltip"
                   title=""
                   data-original-title="You currently have 290 Reward points to spend"
-                  ><i class="fa fa-award text-md"></i>&nbsp;</a
+                  ><i class="fa fa-award text-md"></i>&nbsp;SiteSwift Customer</a
                 >
               </div>
               <div class="author-card-profile">
                 <div class="author-card-avatar">
                   <img
-                    src="https://bootdey.com/img/Content/avatar/avatar1.png"
+                    src="../static/uploads/{{ user.image }}"
                     alt="Daniel Adams"
                   />
                 </div>
                 <div class="author-card-details">
-                  <h5 class="author-card-name text-lg">Daniel Adams</h5>
-                  <span class="author-card-position"
-                    >Joined February 06, 2017</span
-                  >
+                  <h5 class="author-card-name text-lg">{{ user.first_name }} {{ user.last_name }}</h5>
                 </div>
                 <div class="mt-3 ">
                     <div class="info-guard">
-									<p class="text-muted info">Full Stack Developer</p>
-									<p class="text-muted info">Langata, Kenya</p>
-									<p class="text-muted info">Email: recipeient@gmail.com</p>
+									<p class="text-muted info">Email: {{ user.email }}</p>
                                     </div>
 									<button class="btn btn-primary">Follow</button>
 									<!-- <button class="btn btn-outline-primary email">Message</button> -->
@@ -130,6 +125,12 @@
             
                   ><i class="fa fa-user text-muted"></i>Update Profile</a
                 >
+                <a
+                  class="list-group-item"
+                  href="{{ url_for('services') }}"
+            
+                  ><i class="fa fa-user text-muted"></i>See Hosting Plans</a
+                >
                 
                 
             </div>
@@ -158,59 +159,40 @@
                   <tr>
                     <th>Order Numbers</th>
                     <th>Date Purchased</th>
-                    <th>Site Hosted</th>
-                    <th>Total</th>
+                    <th>Hosting Plan</th>
+                    <th>Server IP</th>
+                    <th>Price</th>
                   </tr>
                 </thead>
                 <tbody>
+                  {% for order in orders %}
                   <tr>
                     <td>
                       <a
                         class="navi-link"
                         href="#order-details"
                         data-toggle="modal"
-                        >78A643CD409</a
+                        >{{ order.id }}</a
                       >
                     </td>
-                    <td>August 08, 2017</td>
                     <td>
-                      <span >Workout app</span>
+                      <span>{{ order.created_at }}</span>
                     </td>
-                    <td><span>$760.50</span></td>
+                    <td>
+                      <span >
+                        {% for hosting in hosting_plans %}
+                        {% if hosting.id == order.hosting_plan_id %}
+                        {{ hosting.name }}
+                        {% endif %}
+                        {% endfor %}
+                      </span>
+                    </td>
+                    <td>
+                      <span>{{ order.ip_address }}</span>
+                    </td>
+                    <td><span>Ksh {{ order.amount }}/=</span></td>
                   </tr>
-                  <tr>
-                    <td>
-                      <a
-                        class="navi-link"
-                        href="#order-details"
-                        data-toggle="modal"
-                        >34VB5540K83</a
-                      >
-                    </td>
-                    <td>July 21, 2017</td>
-                    <td>
-                      <span >Blog site</span>
-                    </td>
-                    <td>$315.20</td>
-                  </tr>
-                  
-                  </tr>
-                  <tr>
-                    <td>
-                      <a
-                        class="navi-link"
-                        href="#order-details"
-                        data-toggle="modal"
-                        >47H76G09F33</a
-                      >
-                    </td>
-                    <td>March 30, 2017</td>
-                    <td>
-                    <span >Transport App</span>
-
-                    </td>
-                    <td>$86.40</td>
-                  </tr>
+                  {% endfor %}
                 </tbody>
               </table>
             </div>
@@ -225,18 +207,13 @@
       </div>
     </div>
     <script>
-     function removeRow(button) {
-        // Traverse up the DOM hierarchy to find the closest <tr> element
-        var row = button.closest('tr');
-        // Remove the row from the table
-        row.parentNode.removeChild(row);
-
-        // Check if the table body is empty
-        var tableBody = document.querySelector('#myTable tbody');
-        if (tableBody.children.length === 0) {
-            document.getElementById('no-pets-msg').style.display = 'block';
-        }
-    }
-</script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var duration = 3000; // 5000 milliseconds = 5 seconds
+            var flashMessage = document.getElementById("flash-message");
+            setTimeout(function() {
+                flashMessage.classList.add("hide");
+            }, duration);
+        });
+    </script>
   </body>
 </html>

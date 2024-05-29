@@ -4,6 +4,7 @@
 from flask import Flask, render_template, jsonify, abort, redirect, Response
 import os
 from dotenv import load_dotenv
+import requests
 from auth import Auth
 from flask import request
 from sqlalchemy.orm.exc import NoResultFound
@@ -20,20 +21,24 @@ app.secret_key = "SITESWIFT_SECRET"
 app.config.update(SESSION_COOKIE_MAX_AGE=60)
 
 
-@app.route("/", methods=['GET'], strict_slashes=False)
+@app.route("/", methods=['GET', 'POST'], strict_slashes=False)
 def index() -> str:
     """ GET /
     """
-    cache_id=str(uuid.uuid4())
+    url = "http://localhost:5000/api/v1/hosting_plans"
+    hosting_plan = requests.get(url).json()
+
+    cached_id=str(uuid.uuid4())
     
-    return render_template('index.html', cache_id=cache_id)
+    return render_template('index.html', hosting_plan=hosting_plan, cached_id=cached_id)
 
 
 @app.route("/register", methods=['GET'], strict_slashes=False)
 def register() -> str:
     """ GET /register
     """
-    return render_template('signup.html')
+    cached_id = str(uuid.uuid4())
+    return render_template('signup.html', cached_id=cached_id)
 
 
 @app.route("/users", methods=['POST'], strict_slashes=False)
@@ -84,7 +89,6 @@ def login() -> Union[str, Tuple[str, int]]:
     if not Auth.valid_login(email, password):
         return ('Invalid email or password', 401)
     session_id = Auth.create_session(email)
-    print('Session created: {}'.format(session_id))
     if not session_id:
         abort(401)
     resp = Response('Success')
@@ -109,10 +113,29 @@ def account() -> str:
     """ GET /account
     """
     session_id = request.cookies.get('session_id')
-    user = Auth.get_user_from_session_id(session_id)
-    if not user:
+    user1 = Auth.get_user_from_session_id(session_id)
+    if not user1:
+        flash('Please login to continue.')
         return redirect('/register')
-    return render_template('myaccount.html', user=user)
+    url = "http://localhost:5000/api/v1/orders"
+    orders = requests.get(url).json()
+    user_orders = []
+    for order in orders:
+        if order['user_id'] == user1.id:
+            user_orders.append(order)
+
+    url2 = "http://localhost:5000/api/v1/hosting_plans"
+    hosting_plans = requests.get(url2).json()
+
+    # Sort orders by date
+    user_orders = sorted(user_orders, key=lambda x: x['created_at'], reverse=True)
+
+    user_api_url = "http://localhost:5000/api/v1/users/{}".format(user1.id)
+    user = requests.get(user_api_url).json()
+    
+    flash('Welcome back, {}'.format(user1.first_name))
+    cached_id = str(uuid.uuid4())
+    return render_template('myaccount.html', user=user, orders=user_orders, hosting_plans=hosting_plans, cached_id=cached_id)
 
 
 @app.route("/profile", methods=['GET'], strict_slashes=False)
@@ -124,38 +147,38 @@ def profile() -> str:
     if not user:
         flash('Please login to continue.')
         return redirect('/register')
-    return render_template('profile.html', user=user)
+    flash('Welcome back, {}'.format(user.first_name))
+    cached_id = str(uuid.uuid4())
+    return render_template('profile.html', user=user, cached_id=cached_id)
 
 
 @app.route("/reset_password", methods=['GET'], strict_slashes=False)
 def reset_password() -> str:
     """ GET /reset_password
     """
-    email = request.form.get('email')
-    user = Auth._db.find_user_by(email=email)
-    if not user:
-        flash('User not found')
-        return redirect('/register')
-    token = Auth.get_reset_password_token(email)
-    flash('Reset password token: {}'.format(token))
-    return render_template('reset_password.html')
+
+    cached_id = str(uuid.uuid4())
+    return render_template('forgot-password.html', cached_id=cached_id)
 
 
 @app.route("/reset_password", methods=['POST'], strict_slashes=False)
 def update_password() -> str:
     """ POST /reset_password
     """
-    email = request.form.get('email')
+    data = request.get_json()
+    email = data.get('email')
+    password = data.get('password')
+
     user = Auth._db.find_user_by(email=email)
-    token = user.reset_token
-    password = request.form.get('password')
+    if not user:
+        return "User not found."
+
+    reset_token = Auth.get_reset_password_token(email)
     try:
-        Auth.update_password(token, password)
-        flash('Password updated successfully. Kindly login to continue.')
-        return redirect('/register')
+        Auth.update_password(reset_token, password)
     except ValueError:
-        flash('Invalid token')
-        return redirect('/register')
+        return "Invalid reset token."
+    return redirect('/register')
     
 
 @app.route("/update_profile", methods=['POST'], strict_slashes=False)
@@ -180,28 +203,70 @@ def update_profile() -> str:
 def services() -> str:
     """ GET /services
     """
-    return render_template('services.html')
+
+    url = "http://localhost:5000/api/v1/hosting_plans"
+    hosting_plan = requests.get(url).json()
+
+    cached_id=str(uuid.uuid4())
+    
+    return render_template('services.html', hosting_plan=hosting_plan, cached_id=cached_id)
+
+
+@app.route("/order/<hosting_plan_id>", methods=['GET'], strict_slashes=False)
+def order(hosting_plan_id) -> str:
+    """ GET /order
+    """
+    session_id = request.cookies.get('session_id')
+    user = Auth.get_user_from_session_id(session_id)
+    if not user:
+        flash('Please login to continue.')
+        return redirect('/register')
+    url1 = "http://localhost:5000/api/v1/hosting_plans/{}".format(hosting_plan_id)
+    hosting_plan = requests.get(url1).json()
+
+    # Create order
+    url2 = "http://localhost:5000/api/v1/orders"
+    data = {
+        "user_id": user.id,
+        "hosting_plan_id": hosting_plan_id,
+        "amount": hosting_plan['price'],
+        "status": "pending"
+    }
+    order = requests.post(url2, json=data).json()
+    cached_id=str(uuid.uuid4())
+    return render_template('checkout.html', order_id=order['id'], cached_id=cached_id)
 
 
 @app.route("/team", methods=['GET'], strict_slashes=False)
 def team() -> str:
     """ GET /team
     """
-    return render_template('team.html')
+    cached_id=str(uuid.uuid4())
+    return render_template('team.html', cached_id=cached_id)
 
 
 @app.route("/about", methods=['GET'], strict_slashes=False)
 def about() -> str:
     """ GET /about
     """
-    return render_template('about.html')
+    cached_id=str(uuid.uuid4())
+    return render_template('about.html', cached_id=cached_id)
+
+
+@app.route("/blog", methods=['GET'], strict_slashes=False)
+def blog() -> str:
+    """ GET /blog
+    """
+    cached_id=str(uuid.uuid4())
+    return render_template('blog.html', cached_id=cached_id)
 
 
 @app.route("/admin", methods=['GET'], strict_slashes=False)
 def admin() -> str:
     """ GET /admin
     """
-    return render_template('admin-signup.html')
+    cached_id=str(uuid.uuid4())
+    return render_template('admin-signup.html', cached_id=cached_id)
 
 
 @app.route("/admin/sessions", methods=['POST'], strict_slashes=False)
@@ -223,7 +288,6 @@ def admin_login() -> Union[str, Tuple[str, int]]:
     if not Auth.valid_admin_login(email, password):
         return ('Invalid email or password', 401)
     session_id = Auth.create_admin_session(email)
-    print('Session created: {}'.format(session_id))
     if not session_id:
         abort(401)
     resp = Response('Success')
@@ -240,7 +304,7 @@ def admin_logout() -> str:
     if not user:
         abort(403)
     Auth.destroy_admin_session(user.id)
-    return redirect('/admin')
+    return "Success"
 
 
 @app.route("/admin/account", methods=['GET'], strict_slashes=False)
@@ -250,8 +314,14 @@ def admin_account() -> str:
     session_id = request.cookies.get('session_id')
     user = Auth.get_admin_from_session_id(session_id)
     if not user:
+        flash('Please login to continue.')
         return redirect('/admin')
-    return render_template('admin.html', user=user)
+    flash('Welcome back, {}'.format(user.first_name))
+    
+    url = "http://localhost:5000/api/v1/stats"
+    stats = requests.get(url).json()
+    cached_id=str(uuid.uuid4())
+    return render_template('admin-dashboard.html', user=user, stats=stats, cached_id=cached_id)
 
 
 @app.route("/admin/account/dashboard", methods=['GET'], strict_slashes=False)
@@ -262,7 +332,11 @@ def admin_dashboard() -> str:
     user = Auth.get_admin_from_session_id(session_id)
     if not user:
         return redirect('/admin')
-    return render_template('admin-dashboard.html')
+    
+    url = "http://localhost:5000/api/v1/stats"
+    stats = requests.get(url).json()
+    cached_id=str(uuid.uuid4())
+    return render_template('admin-dashboard.html', user=user, stats=stats, cached_id=cached_id)
 
 
 @app.route("/admin/account/customers", methods=['GET'], strict_slashes=False)
@@ -273,7 +347,11 @@ def admin_customers() -> str:
     user = Auth.get_admin_from_session_id(session_id)
     if not user:
         return redirect('/admin')
-    return render_template('admin-customers.html')
+    
+    url = "http://localhost:5000/api/v1/users"
+    users = requests.get(url).json()
+    cached_id=str(uuid.uuid4())
+    return render_template('admin-customers.html', user=user, users=users, cached_id=cached_id)
 
 
 @app.route("/admin/account/sales", methods=['GET'], strict_slashes=False)
@@ -284,7 +362,14 @@ def admin_sales() -> str:
     user = Auth.get_admin_from_session_id(session_id)
     if not user:
         return redirect('/admin')
-    return render_template('admin-sales.html')
+    url = "http://localhost:5000/api/v1/orders"
+    orders = requests.get(url).json()
+    url2 = "http://localhost:5000/api/v1/hosting_plans"
+    hosting_plans = requests.get(url2).json()
+    url3 = "http://localhost:5000/api/v1/users"
+    users = requests.get(url3).json()
+    cached_id=str(uuid.uuid4())
+    return render_template('admin-sales.html', user=user, orders=orders, hosting_plans=hosting_plans, users=users, cached_id=cached_id)
 
 
 

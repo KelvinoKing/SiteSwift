@@ -14,9 +14,17 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../static/styles/main.css" />
+    <link rel="stylesheet" href="../static/styles/main.css?{{ cached_id }}" />
+    <link rel="stylesheet" href="../static/styles/admin.css?{{ cached_id }}" />
   </head>
   <body>
+    <div class="flash_container">
+      {% with messages = get_flashed_messages(with_categories=true) %} {% for
+      category, message in messages %}
+      <div class="alert alert-{{ category }}">{{ message }}</div>
+      {% endfor %} {% endwith %}
+    </div>
+
     <!-- Navbar Start -->
 
     <section class="section">
@@ -79,7 +87,7 @@
               placeholder="Password"
               required
             />
-            <a href="#">Forgot password?</a>
+            <a href="{{ url_for('reset_password') }}">Forgot password?</a>
             <input type="submit" class="button" value="Login" />
           </form>
         </div>
@@ -106,8 +114,18 @@
       crossorigin="anonymous"
     ></script>
 
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var duration = 5000; // 5000 milliseconds = 5 seconds
+        var flashMessage = document.getElementById("flash-message");
+        setTimeout(function () {
+          flashMessage.classList.add("hide");
+        }, duration);
+      });
+    </script>
+
     <!-- Template Javascript -->
-    <script src="../static/scripts/main.js"></script>
-    <script src="../static/scripts/signup.js"></script>
+    <script src="../static/scripts/main.js?{{ cached_id }}"></script>
+    <script src="../static/scripts/signup.js?{{ cached_id }}"></script>
   </body>
 </html>

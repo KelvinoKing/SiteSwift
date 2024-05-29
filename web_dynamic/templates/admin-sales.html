@@ -14,29 +14,29 @@
     />
     <link
       rel="stylesheet"
-      href="{{ url_for('static', filename='styles/admin.css') }}"
+      href="{{ url_for('static', filename='styles/admin.css') }}?{{ cached_id }}"
     />
   </head>
   <body>
     <div class="grid-container">
       <!-- Header -->
       <header class="header">
-        <button
+        <!-- <button
           class="menu-icon"
           aria-label="Open Sidebar"
           onclick="openSidebar()"
         >
           <span class="material-icons-outlined">menu</span>
-        </button>
+        </button> -->
         <div class="header-left">
-          <button aria-label="Search">
+          <!-- <button aria-label="Search">
             <span class="material-icons-outlined">search</span>
-          </button>
+          </button> -->
         </div>
         <div class="header-right">
-          <button aria-label="Notifications">
+          <!-- <button aria-label="Notifications">
             <span class="material-icons-outlined">notifications</span>
-          </button>
+          </button> -->
           <button aria-label="Email">
             <span class="material-icons-outlined">email</span>
           </button>
@@ -53,13 +53,13 @@
           <div class="sidebar-brand">
             <span class="material-icons-outlined">business</span> SiteSwift
           </div>
-          <button
+          <!-- <button
             aria-label="Close Sidebar"
             class="close-icon"
             onclick="closeSidebar()"
           >
             <span class="material-icons-outlined">close</span>
-          </button>
+          </button> -->
         </div>
 
         <ul class="sidebar-list">
@@ -114,7 +114,8 @@
               <table>
                 <thead>
                   <tr>
-                    <th>Sale ID</th>
+                    <th>Order ID</th>
+                    <th>Server IP</th>
                     <th>Product</th>
                     <th>Customer</th>
                     <th>Amount</th>
@@ -122,41 +123,24 @@
                   </tr>
                 </thead>
                 <tbody id="sales-table-body">
+                  {% for order in orders %}
                   <tr data-status="Completed">
-                    <td>101</td>
-                    <td>Product A</td>
-                    <td>John Doe</td>
-                    <td>$100</td>
-                    <td>Completed</td>
+                    <td>{{ order.id }}</td>
+                    <td>{{ order.ip_address }}</td>
+                    <td>
+                      {% for hosting in hosting_plans %} {% if hosting.id ==
+                      order.hosting_plan_id %} {{ hosting.name }} {% endif %} {%
+                      endfor %}
+                    </td>
+                    <td>
+                      {% for customer in users %} {% if customer.id ==
+                      order.user_id %} {{ customer.first_name }} {{
+                      customer.last_name }} {% endif %} {% endfor %}
+                    </td>
+                    <td>Ksh {{ order.amount }}/=</td>
+                    <td>{{ order.status }}</td>
                   </tr>
-                  <tr data-status="Continuing">
-                    <td>102</td>
-                    <td>Product B</td>
-                    <td>Jane Smith</td>
-                    <td>$200</td>
-                    <td>Continuing</td>
-                  </tr>
-                  <tr data-status="Rejected">
-                    <td>103</td>
-                    <td>Product C</td>
-                    <td>Bob Johnson</td>
-                    <td>$150</td>
-                    <td>Rejected</td>
-                  </tr>
-                  <tr data-status="Completed">
-                    <td>104</td>
-                    <td>Product D</td>
-                    <td>Alice Brown</td>
-                    <td>$250</td>
-                    <td>Completed</td>
-                  </tr>
-                  <tr data-status="Continuing">
-                    <td>105</td>
-                    <td>Product E</td>
-                    <td>Charlie Black</td>
-                    <td>$300</td>
-                    <td>Continuing</td>
-                  </tr>
+                  {% endfor %}
                 </tbody>
               </table>
             </div>
@@ -166,7 +150,8 @@
       <!-- End Main -->
     </div>
 
-    <!-- Custom JS -->
-    <script src="../static/scripts/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ url_for('static', filename='scripts/main.js') }}?{{ cached_id }}"></script>
+    <script src="{{ url_for('static', filename='scripts/admin.js') }}?{{ cached_id }}"></script>
   </body>
 </html>

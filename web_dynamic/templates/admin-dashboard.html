@@ -14,29 +14,36 @@
     />
     <link
       rel="stylesheet"
-      href="{{ url_for('static', filename='styles/admin.css') }}"
+      href="{{ url_for('static', filename='styles/admin.css') }}?{{ cached_id }}"
     />
   </head>
   <body>
+    <div class="flash_container">
+      {% with messages = get_flashed_messages(with_categories=true) %} {% for
+      category, message in messages %}
+      <div class="alert alert-{{ category }}">{{ message }}</div>
+      {% endfor %} {% endwith %}
+    </div>
+
     <div class="grid-container">
       <!-- Header -->
-      <header class="header">
-        <button
+      <header class="header mt-0">
+        <!-- <button
           class="menu-icon"
           aria-label="Open Sidebar"
           onclick="openSidebar()"
         >
           <span class="material-icons-outlined">menu</span>
-        </button>
-        <div class="header-left">
+        </button> -->
+        <!-- <div class="header-left">
           <button aria-label="Search">
             <span class="material-icons-outlined">search</span>
           </button>
-        </div>
+        </div> -->
         <div class="header-right">
-          <button aria-label="Notifications">
+          <!-- <button aria-label="Notifications">
             <span class="material-icons-outlined">notifications</span>
-          </button>
+          </button> -->
           <button aria-label="Email">
             <span class="material-icons-outlined">email</span>
           </button>
@@ -53,13 +60,13 @@
           <div class="sidebar-brand">
             <span class="material-icons-outlined">business</span> SiteSwift
           </div>
-          <button
+          <!-- <button
             aria-label="Close Sidebar"
             class="close-icon"
             onclick="closeSidebar()"
           >
             <span class="material-icons-outlined">close</span>
-          </button>
+          </button> -->
         </div>
 
         <ul class="sidebar-list">
@@ -114,7 +121,7 @@
               <h3>PRODUCTS</h3>
               <span class="material-icons-outlined">inventory_2</span>
             </div>
-            <h1>249</h1>
+            <h1>{{ stats.hosting_plans }}</h1>
           </div>
 
           <div class="card">
@@ -122,7 +129,7 @@
               <h3>CATEGORIES</h3>
               <span class="material-icons-outlined">category</span>
             </div>
-            <h1>25</h1>
+            <h1>{{ stats.hosting_plans }}</h1>
           </div>
 
           <div class="card">
@@ -130,7 +137,7 @@
               <h3>CUSTOMERS</h3>
               <span class="material-icons-outlined">groups</span>
             </div>
-            <h1>1500</h1>
+            <h1>{{ stats.users }}</h1>
           </div>
 
           <div class="card">
@@ -140,7 +147,7 @@
                 >notification_important</span
               >
             </div>
-            <h1>56</h1>
+            <h1>0</h1>
           </div>
         </div>
 
@@ -160,9 +167,18 @@
     </div>
 
     <!-- Scripts -->
-    <!-- ApexCharts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.35.5/apexcharts.min.js"></script>
-    <!-- Custom JS -->
-    <script src="../static/scripts/main.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var duration = 5000; // 5000 milliseconds = 5 seconds
+        var flashMessage = document.getElementById("flash-message");
+        setTimeout(function () {
+          flashMessage.classList.add("hide");
+        }, duration);
+      });
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ url_for('static', filename='scripts/main.js') }}?{{ cached_id }}"></script>
+    <script src="{{ url_for('static', filename='scripts/admin.js') }}?{{ cached_id }}"></script>
   </body>
 </html>
