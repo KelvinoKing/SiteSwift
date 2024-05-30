@@ -268,7 +268,7 @@
         <div class="row comparison position-relative">
           <div class="comparison container-fluid">
             <div class="row gx-5">
-              <div class="col-lg-3 col-md-6 wow fadeIn" data-wow-delay="0.1s">
+              <div class="col-lg-3 col-md-6 card p-4">
                 <i class="fa fa-server fa-3x text-primary mb-3"></i>
                 <h5 class="fw-bold">99.99% Uptime</h5>
                 <p>
@@ -276,7 +276,7 @@
                   providing 99.99% uptime for your services.
                 </p>
               </div>
-              <div class="col-lg-3 col-md-6 wow fadeIn" data-wow-delay="0.3s">
+              <div class="col-lg-3 col-md-6 card p-4">
                 <i class="fa fa-shield-alt fa-3x text-primary mb-3"></i>
                 <h5 class="fw-bold">100% Secured</h5>
                 <p>
@@ -284,7 +284,7 @@
                   measures to protect your valuable information.
                 </p>
               </div>
-              <div class="col-lg-3 col-md-6 wow fadeIn" data-wow-delay="0.5s">
+              <div class="col-lg-3 col-md-6 card p-4">
                 <i class="fa fa-cog fa-3x text-primary mb-3"></i>
                 <h5 class="fw-bold">Control Panel</h5>
                 <p>
@@ -292,7 +292,7 @@
                   user-friendly control panel.
                 </p>
               </div>
-              <div class="col-lg-3 col-md-6 wow fadeIn" data-wow-delay="0.7s">
+              <div class="col-lg-3 col-md-6 card p-4">
                 <i class="fa fa-headset fa-3x text-primary mb-3"></i>
                 <h5 class="fw-bold">24/7 Support</h5>
                 <p>
@@ -309,7 +309,7 @@
     <!-- core_features_end -->
 
     <!-- Pricing Start -->
-    <div class="container-xxl py-5">
+    <!-- <div class="container-xxl py-5">
       <div class="container px-lg-5">
         <div
           class="section-title position-relative text-center mx-auto mb-5 pb-4 wow fadeInUp"
@@ -554,7 +554,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
     <!-- Pricing End -->
 
     <!-- Footer Start -->
@@ -668,6 +668,9 @@
           </div>
         </div>
       </div>
+      <a href="#" class="btn btn-lg btn-secondary btn-lg-square back-to-top"
+        ><i class="bi bi-arrow-up"></i
+      ></a>
     </div>
     <!-- Footer End -->
 
@@ -675,6 +678,57 @@
     <!-- <a href="#" class="btn btn-lg btn-secondary btn-lg-square back-to-top"
       ><i class="bi bi-arrow-up"></i
     ></a> -->
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Function to animate the counter
+        function animateCounter(element, start, end, duration) {
+          let startTime = null;
+
+          function updateCounter(currentTime) {
+            if (!startTime) startTime = currentTime;
+            const progress = currentTime - startTime;
+            const rate = Math.min(progress / duration, 1);
+            const currentCount = Math.floor(rate * (end - start) + start);
+            element.textContent = currentCount;
+
+            if (rate < 1) {
+              requestAnimationFrame(updateCounter);
+            }
+          }
+
+          requestAnimationFrame(updateCounter);
+        }
+
+        // Function to start counter when the element comes into view
+        function startCounters(entries, observer) {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const element = entry.target;
+              const endValue = parseInt(element.textContent, 10);
+              animateCounter(element, 0, endValue, 2000);
+              observer.unobserve(element); // Stop observing once animation has started
+            }
+          });
+        }
+
+        // Set up the observer
+        const observerOptions = {
+          threshold: 0.5,
+        };
+
+        const observer = new IntersectionObserver(
+          startCounters,
+          observerOptions
+        );
+
+        // Observe elements with the data-toggle="counter-up" attribute
+        const counters = document.querySelectorAll(
+          '[data-toggle="counter-up"]'
+        );
+        counters.forEach((counter) => observer.observe(counter));
+      });
+    </script>
 
     <script src="../static/scripts/main.js?{{ cached_id }}"></script>
   </body>

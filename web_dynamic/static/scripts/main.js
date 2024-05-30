@@ -52,3 +52,47 @@ function openSidebar() {
 function closeSidebar() {
   document.getElementById("sidebar").classList.remove("open");
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+  // Function to animate the counter
+  function animateCounter(element, start, end, duration) {
+    let startTime = null;
+
+    function updateCounter(currentTime) {
+      if (!startTime) startTime = currentTime;
+      const progress = currentTime - startTime;
+      const rate = Math.min(progress / duration, 1);
+      const currentCount = Math.floor(rate * (end - start) + start);
+      element.textContent = currentCount;
+
+      if (rate < 1) {
+        requestAnimationFrame(updateCounter);
+      }
+    }
+
+    requestAnimationFrame(updateCounter);
+  }
+
+  // Function to start counter when the element comes into view
+  function startCounters(entries, observer) {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const element = entry.target;
+        const endValue = parseInt(element.textContent, 10);
+        animateCounter(element, 0, endValue, 2000);
+        observer.unobserve(element); // Stop observing once animation has started
+      }
+    });
+  }
+
+  // Set up the observer
+  const observerOptions = {
+    threshold: 0.5,
+  };
+
+  const observer = new IntersectionObserver(startCounters, observerOptions);
+
+  // Observe elements with the data-toggle="counter-up" attribute
+  const counters = document.querySelectorAll('[data-toggle="counter-up"]');
+  counters.forEach((counter) => observer.observe(counter));
+});
