@@ -96,7 +96,10 @@ def put_user(user_id):
     
     for key, value in data.items():
         if key not in ['id', 'created_at', 'updated_at']:
-            setattr(user, key, value)
+            if not value:
+                continue
+            else:
+                setattr(user, key, value)
     
     user.save()
     
