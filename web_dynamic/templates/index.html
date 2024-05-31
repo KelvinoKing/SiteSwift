@@ -362,28 +362,28 @@
     <div class="row comparison position-relative">
       <div class="comparison container-fluid">
         <div class="row gx-5">
-          <div class="col-lg-3 col-md-6 wow fadeIn" data-wow-delay="0.1s">
+          <div class="col-lg-3 col-md-6 wow card p-4" >
             <i class="fa fa-server fa-3x text-primary mb-3"></i>
             <h5 class="fw-bold">99.99% Uptime</h5>
             <p>
               Experience unparalleled reliability with our commitment to providing 99.99% uptime for your services.
             </p>
           </div>
-          <div class="col-lg-3 col-md-6 wow fadeIn" data-wow-delay="0.3s">
+          <div class="col-lg-3 col-md-6 wow card p-4" >
             <i class="fa fa-shield-alt fa-3x text-primary mb-3"></i>
             <h5 class="fw-bold">100% Secured</h5>
             <p>
               Your data is safe with us. We offer top-notch security measures to protect your valuable information.
             </p>
           </div>
-          <div class="col-lg-3 col-md-6 wow fadeIn" data-wow-delay="0.5s">
+          <div class="col-lg-3 col-md-6 wow card p-4" >
             <i class="fa fa-cog fa-3x text-primary mb-3"></i>
             <h5 class="fw-bold">Control Panel</h5>
             <p>
               Manage your services with ease using our intuitive and user-friendly control panel.
             </p>
           </div>
-          <div class="col-lg-3 col-md-6 wow fadeIn" data-wow-delay="0.7s">
+          <div class="col-lg-3 col-md-6 wow card p-4" >
             <i class="fa fa-headset fa-3x text-primary mb-3"></i>
             <h5 class="fw-bold">24/7 Support</h5>
             <p>
@@ -399,7 +399,7 @@
     <!-- Core features -->
 
     <!-- Pricing Start -->
-    <div class="container-xxl py-5">
+    <div class="container-xxl py-5 b">
       <div class="container-hosting px-lg-5">
         <div
           class="section-title position-relative text-center mx-auto mb-5 pb-4 wow fadeInUp"
@@ -413,76 +413,65 @@
         </div>
         <div class="row gy-5 gx-3">
           {% for plan in hosting_plan %}
-          <div class="col-lg-3 col-md-3 wow fadeInUp" data-wow-delay="0.2s">
-            <div
-              class="position-relative shadow rounded border-top border-5 border-primary"
-            >
-              <div
-                class="d-flex align-items-center justify-content-center position-absolute top-0 start-50 translate-middle bg-primary rounded-circle"
-                style="width: 45px; height: 45px; margin-top: -3px"
-              >
-                <i class="fa fa-share-alt text-white"></i>
-              </div>
-              <div class="text-center border-bottom p-4 pt-5">
-                <h4 class="fw-bold">{{ plan.name }}</h4>
-                <p class="mb-0">
-                  {{ plan.description }}
-                </p>
-              </div>
-              <div class="text-center border-bottom p-4">
-                <p class="text-primary mb-1">
-                  Latest Offer - <strong>Save 30%</strong>
-                </p>
-                <h1 class="mb-3">
-                  <small
-                    class="align-top"
-                    style="font-size: 22px; line-height: 45px"
-                    >Ksh</small
-                  >{{ plan.price }}<small
-                    class="align-bottom"
-                    style="font-size: 16px; line-height: 40px"
-                    >/ Month</small
-                  >
-                </h1>
-                <!-- Takes a hosting_plan id-->
-                <a class="btn btn-primary px-4 py-2" href="{{ url_for('order', hosting_plan_id=plan.id) }}">Buy Now</a>
-              </div>
-              <div class="p-4">
-                <p class="border-bottom pb-3">
-                  <i class="fa fa-check text-primary me-3"></i>Host 
-                  {{ plan.max_websites }} Domain
-                </p>
-                <p class="border-bottom pb-3">
-                  <i class="fa fa-check text-primary me-3"></i>{{ plan.max_space }}GB
-                  SSD Storage
-                </p>
-                <p class="border-bottom pb-3">
-                  <i class="fa fa-check text-primary me-3"></i>{{ plan.max_bandwidth }}GB
-                  Bandwidth
-                </p>
-                <p class="border-bottom pb-3">
-                  <i class="fa fa-check text-primary me-3"></i>
-                  {% if plan.max_email == 500 %}
-                  Unlimited Email Accounts
-                  {% else %}
-                  {{ plan.max_email }} Email Accounts
-                  {% endif %}
-                </p>
-                <p class="border-bottom pb-3">
-                  <i class="fa fa-check text-primary me-3"></i>
-                  {% if plan.max_databases == 500 %}
-                  Unlimited Databases
-                  {% else %}
-                  {{ plan.max_databases }} Databases
-                  {% endif %}
-                </p>
-                <p class="mb-0">
-                  <i class="fa fa-check text-primary me-3"></i>30 Days Money
-                  Back Guarantee
-                </p>
-              </div>
-            </div>
-          </div>
+         <div class="col-lg-3 col-md-3 wow fadeInUp" data-wow-delay="0.2s" style="background-color: #fff;">
+  <div class="position-relative shadow rounded border-top border-5 border-primary">
+    <div
+      class="d-flex align-items-center justify-content-center position-absolute top-0 start-50 translate-middle bg-primary rounded-circle"
+      style="width: 45px; height: 45px; margin-top: -3px"
+    >
+      <i class="fa fa-share-alt text-white"></i>
+    </div>
+    <div class="text-center border-bottom p-4 pt-5">
+      <h4 class="fw-bold">{{ plan.name }}</h4>
+      <p class="mb-0">
+        {{ plan.description }}
+      </p>
+    </div>
+    <div class="text-center border-bottom p-4">
+      <p class="text-primary mb-1">
+        Latest Offer - <strong>Save 30%</strong>
+      </p>
+      <h1 class="mb-3">
+        <small class="" style="font-size: 22px; line-height: 45px">Ksh</small>
+        {{ plan.price }}
+        <small class="" style="font-size: 16px; line-height: 40px">/ Month</small>
+      </h1>
+      <a class="btn btn-primary px-4 py-2" href="{{ url_for('order', hosting_plan_id=plan.id) }}">Buy Now</a>
+    </div>
+    <div class="p-4">
+      <p class="border-bottom pb-3">
+        <i class="fa fa-check text-primary me-3"></i>Host {{ plan.max_websites }} Domain
+      </p>
+      <p class="border-bottom pb-3">
+        <i class="fa fa-check text-primary me-3"></i>{{ plan.max_space }}GB SSD Storage
+      </p>
+      <p class="border-bottom pb-3">
+        <i class="fa fa-check text-primary me-3"></i>{{ plan.max_bandwidth }}GB Bandwidth
+      </p>
+      <p class="border-bottom pb-3">
+        <i class="fa fa-check text-primary me-3"></i>
+        {% if plan.max_email == 500 %}
+        Unlimited Email Accounts
+        {% else %}
+        {{ plan.max_email }} Email Accounts
+        {% endif %}
+      </p>
+      <p class="border-bottom pb-3">
+        <i class="fa fa-check text-primary me-3"></i>
+        {% if plan.max_databases == 500 %}
+        Unlimited Databases
+        {% else %}
+        {{ plan.max_databases }} Databases
+        {% endif %}
+      </p>
+      <p class="mb-0">
+        <i class="fa fa-check text-primary me-3"></i>30 Days Money Back Guarantee
+      </p>
+    </div>
+  </div>
+</div>
+
+         
           {% endfor %}
     <!-- Testimonials -->
 
@@ -760,13 +749,61 @@
           </div>
         </div>
       </div>
+      <a href="#" class="btn btn-lg btn-secondary btn-lg-square back-to-top"
+      ><i class="bi bi-arrow-up"></i
+    ></a>
     </div>
     <!-- Footer End -->
 
     <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-secondary btn-lg-square back-to-top"
-      ><i class="bi bi-arrow-up"></i
-    ></a>
+    
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+    // Function to animate the counter
+    function animateCounter(element, start, end, duration) {
+        let startTime = null;
+
+        function updateCounter(currentTime) {
+            if (!startTime) startTime = currentTime;
+            const progress = currentTime - startTime;
+            const rate = Math.min(progress / duration, 1);
+            const currentCount = Math.floor(rate * (end - start) + start);
+            element.textContent = currentCount;
+
+            if (rate < 1) {
+                requestAnimationFrame(updateCounter);
+            }
+        }
+
+        requestAnimationFrame(updateCounter);
+    }
+
+    // Function to start counter when the element comes into view
+    function startCounters(entries, observer) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const element = entry.target;
+                const endValue = parseInt(element.textContent, 10);
+                animateCounter(element, 0, endValue, 2000);
+                observer.unobserve(element); // Stop observing once animation has started
+            }
+        });
+    }
+
+    // Set up the observer
+    const observerOptions = {
+        threshold: 0.5
+    };
+
+    const observer = new IntersectionObserver(startCounters, observerOptions);
+
+    // Observe elements with the data-toggle="counter-up" attribute
+    const counters = document.querySelectorAll('[data-toggle="counter-up"]');
+    counters.forEach(counter => observer.observe(counter));
+});
+
+    </script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>

@@ -2,7 +2,10 @@ body {
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   font-size: 14px;
-  color: #888;
+  /* color: #888; */
+  /* background-image: url("../images/share.png"); */
+  background-color: #dee2e6;
+  opacity: 0.9;
 }
 
 a {

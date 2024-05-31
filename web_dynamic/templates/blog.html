@@ -92,7 +92,9 @@
                           >Blogs <i class="icofont-rounded-down"></i
                         ></a>
                         <ul class="dropdown">
-                          <li><a href="{{ url_for('blog') }}">Blog Details</a></li>
+                          <li>
+                            <a href="{{ url_for('blog') }}">Blog Details</a>
+                          </li>
                         </ul>
                       </li>
                       <li><a href="{{ url_for('about') }}">Contact Us</a></li>
@@ -116,7 +118,7 @@
     </header>
 
     <!-- Blog -->
-    <hr />
+
     <div class="container-fluid blog py-5">
       <div class="container py-5">
         <div class="text-center mx-auto mb-5" style="max-width: 800px">
