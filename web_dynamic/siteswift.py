@@ -5,7 +5,6 @@ from flask import Flask, render_template, jsonify, abort, redirect, Response
 import os
 from dotenv import load_dotenv
 import requests
-from auth import Auth
 from flask import request
 from sqlalchemy.orm.exc import NoResultFound
 from typing import List, Dict, Union, Any, Tuple
@@ -15,7 +14,7 @@ import uuid
 
 load_dotenv()
 
-Auth = Auth()
+Auth = __import__('auth').Auth
 app = Flask(__name__)
 app.secret_key = "SITESWIFT_SECRET"
 app.config.update(SESSION_COOKIE_MAX_AGE=60)
