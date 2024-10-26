@@ -1,6 +1,0 @@
-create HostingPlan name="STARTER" description="Made_for_a_simple_website_or_blog" price=600.00 max_websites=1 max_space=20 max_bandwidth=100 max_email=25 max_databases=50
-create HostingPlan name="BASIC" description="Ideal_for_multiple_sites_needing_storage,_security,_backups" price=900.00 max_websites=2 max_space=40 max_bandwidth=200 max_email=25 max_databases=100
-create HostingPlan name="SHOP" description="Best_for_enterprise_applicatons" price=2000.00 max_websites=4 max_space=100 max_bandwidth=500 max_email=500 max_databases=500
-create HostingPlan name="PRO" description="For_high_traffic_sites" price=3000.00 max_websites=5 max_space=400 max_bandwidth=700 max_email=500 max_databases=500
-
-create Admin first_name="Kelvin" last_name="Njoroge" email="knjoroge@gmail.com" password_hash="Kelvin123"
