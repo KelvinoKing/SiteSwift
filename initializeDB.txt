@@ -1,0 +1,15 @@
+create Admin email="knjoroge834@gmail.com" first_name="Kelvin" last_name="Njoroge" password_hash="Kelvin2001"
+
+create HostingPlan description="Ideal_for_personal_websites_or_small_blogs" max_bandwidth=50 max_databases=2 max_email=5 max_space=10 max_websites=1 name="Starter_Plan" price=5.00
+
+create HostingPlan description="Perfect_for_small_businesses_and_startups" max_bandwidth=100 max_databases=5 max_email=20 max_space=25 max_websites=2 name="Basic_Plan" price=10.00
+
+create HostingPlan description="Designed_for_high_traffic_sites_with_moderate_needs" max_bandwid
+th=200 max_databases=10 max_email=50 max_space=50 max_websites=5 name="Pro_Plan" price=20.00
+
+create HostingPlan description="Robust_solution_for_e-commerce_or_business_sites" max_bandwidth=
+500 max_databases=25 max_email=100 max_space=100 max_websites=10 name="Business_Plan" price=50.00
+
+create HostingPlan description="Ideal_for_large_companies_with_high-performance_needs" max_bandw
+idth=1000 max_databases=200 max_email=300 max_space=500 max_websites=100 name="Enterprise_Plan" price=100.0
+0
