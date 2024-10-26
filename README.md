@@ -24,6 +24,7 @@ This is a web application that allows users to purchase hosting services for the
 
 - Python 3.7+
 - pip (Python package installer)
+- sudo apt-get install pkg-config libmysqlclient-dev
 
 ### Clone the Repository
 
