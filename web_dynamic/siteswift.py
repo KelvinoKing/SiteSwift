@@ -4,7 +4,7 @@
 from flask import Flask, render_template, jsonify, abort, redirect, Response
 import os
 from dotenv import load_dotenv
-from auth import Auth
+from web_dynamic.auth import Auth
 import requests
 from flask import request
 from sqlalchemy.orm.exc import NoResultFound

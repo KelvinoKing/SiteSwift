@@ -14,7 +14,7 @@ $(document).ready(function() {
         "ip_address": ip_address
       }
 
-      var amount = 100; // Example amount, replace with actual amount
+      var amount = 1; // Example amount, replace with actual amount
       var phoneNumber = $("#mobile-number").val(); // Example phone number, replace with actual number
 
       if (!phoneNumber) {
