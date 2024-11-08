@@ -59,6 +59,8 @@ flask db upgrade
 ```
 
 ## Running the Application
+gunicorn -b 127.0.0.1:5001 web_dynamic.app:app
+gunicorn -b 127.0.0.1:5001 api.v1.app:app
 
 ### Start the Development Server
 
@@ -75,7 +77,7 @@ A developer console is provided to manage class instances interactively. You can
 ### Running the Developer Console
 
 ```bash
-python dev_console.py
+python console.py
 ```
 
 ### Console Commands
